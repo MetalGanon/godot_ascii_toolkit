@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0i4mx1rfy4h0"]
+
+[ext_resource type="PackedScene" uid="uid://b4kn5f0dl8xuj" path="res://GodotASCIIToolKit/Controls/BasicBoxes/ascii_custom_box.tscn" id="1_0xx4o"]
+[ext_resource type="Script" uid="uid://b70oitbk2nobb" path="res://GodotASCIIToolKit/Controls/BasicBoxes/ascii_background_custom_box.gd" id="2_hdtxq"]
+
+[node name="ASCIIBackgroundCustomBox" instance=ExtResource("1_0xx4o")]
+script = ExtResource("2_hdtxq")
+background_visible = true
+background_color = Color(0, 0, 0, 1)
+
+[node name="BackgroundRect" type="ColorRect" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true

@@ -1,0 +1,186 @@
+[gd_scene load_steps=10 format=3 uid="uid://cxdrcuwuy4b3l"]
+
+[ext_resource type="Script" uid="uid://cppsjiuyxkmqm" path="res://GodotASCIIToolKit/Controls/ascii_control.gd" id="1_faqmt"]
+[ext_resource type="Script" uid="uid://c5q7xhrgobfji" path="res://GodotASCIIToolKit/Credits/ascii_credits.gd" id="2_cbl37"]
+[ext_resource type="PackedScene" uid="uid://bvrmq4xa6mh2t" path="res://GodotASCIIToolKit/Controls/TextBoxes/ascii_titled_box.tscn" id="3_8whs8"]
+[ext_resource type="PackedScene" uid="uid://cvbfr48cx50un" path="res://GodotASCIIToolKit/Controls/ascii_label.tscn" id="4_khh6n"]
+
+[sub_resource type="Animation" id="Animation_kriwc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_71hay"]
+resource_name = "fade_in"
+length = 0.16667001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yrdss"]
+resource_name = "fade_in_out"
+length = 0.8333367
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6666667, 0.8333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cipsj"]
+resource_name = "fade_out"
+length = 0.16667001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cipsj"]
+_data = {
+&"RESET": SubResource("Animation_kriwc"),
+&"fade_in": SubResource("Animation_71hay"),
+&"fade_in_out": SubResource("Animation_yrdss"),
+&"fade_out": SubResource("Animation_cipsj")
+}
+
+[node name="ASCIICreditsScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_faqmt")
+metadata/_custom_type_script = "uid://cppsjiuyxkmqm"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="ASCIICredits" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("2_cbl37")
+metadata/_custom_type_script = "uid://cppsjiuyxkmqm"
+
+[node name="FadePlayer" type="AnimationPlayer" parent="ASCIICredits"]
+libraries = {
+&"": SubResource("AnimationLibrary_cipsj")
+}
+
+[node name="ASCIICreditsBox" parent="ASCIICredits" instance=ExtResource("3_8whs8")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -216.0
+offset_right = 320.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+title_text = "Thanks"
+title_vertical_position = 1
+title_horizontal_alignment = 1
+
+[node name="ASCIICreditsLabel" parent="ASCIICredits/ASCIICreditsBox" instance=ExtResource("4_khh6n")]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 624.0
+offset_bottom = 128.0
+mouse_filter = 0
+text = " a88888b.  888888ba   88888888b 888888ba  dP d888888P .d88888b 
+d8'   `88  88    `8b  88        88    `8b 88    88    88.    \"'
+88        a88aaaa8P' a88aaaa    88     88 88    88    `Y88888b.
+88         88   `8b.  88        88     88 88    88          `8b
+Y8.   .88  88     88  88        88    .8P 88    88    d8'   .8P
+ Y88888P'  dP     dP  88888888P 8888888P  dP    dP     Y88888P "
+horizontal_alignment = 1
+
+[node name="ASCIIFontsLabel" parent="ASCIICredits/ASCIICreditsBox" instance=ExtResource("4_khh6n")]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 160.0
+offset_right = 608.0
+offset_bottom = 208.0
+mouse_filter = 0
+text = " _  __ ________    __ _    ___ __
+|_|(_ /   |  |    |_ / \\|\\| | (_ 
+| |__)\\___|__|_   |  \\_/| | | __)"
+
+[node name="ASCIIToolsLabel" parent="ASCIICredits/ASCIICreditsBox" instance=ExtResource("4_khh6n")]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 288.0
+offset_right = 608.0
+offset_bottom = 336.0
+mouse_filter = 0
+text = " _  __ ________   ___ _  _     __
+|_|(_ /   |  |     | / \\/ \\|  (_ 
+| |__)\\___|__|_    | \\_/\\_/|____)"
+horizontal_alignment = 2
+
+[node name="ASCIIFontsCredits" parent="ASCIICredits/ASCIICreditsBox" instance=ExtResource("4_khh6n")]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 224.0
+offset_right = 608.0
+offset_bottom = 272.0
+mouse_filter = 0
+text = "Bigfig - Glenn Chappell
+
+Nancyj - Vampyr"
+
+[node name="ASCIIToolsCredits" parent="ASCIICredits/ASCIICreditsBox" instance=ExtResource("4_khh6n")]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 352.0
+offset_right = 616.0
+offset_bottom = 400.0
+mouse_filter = 0
+text = "ASCII Art Archive
+
+ascii-image-converter"
+horizontal_alignment = 2

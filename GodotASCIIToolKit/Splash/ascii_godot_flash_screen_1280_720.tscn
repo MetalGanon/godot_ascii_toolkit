@@ -1,0 +1,162 @@
+[gd_scene load_steps=14 format=3 uid="uid://dfd3acq10xm8i"]
+
+[ext_resource type="Script" uid="uid://cppsjiuyxkmqm" path="res://GodotASCIIToolKit/Controls/ascii_control.gd" id="1_c175r"]
+[ext_resource type="PackedScene" uid="uid://c3sgdtv3ijijg" path="res://GodotASCIIToolKit/Splash/ascii_godot_logo.tscn" id="2_71hay"]
+[ext_resource type="Script" uid="uid://01w54bkvnjo5" path="res://GodotASCIIToolKit/Splash/godot_splash.gd" id="2_kriwc"]
+[ext_resource type="PackedScene" uid="uid://cvbfr48cx50un" path="res://GodotASCIIToolKit/Controls/ascii_label.tscn" id="3_kriwc"]
+[ext_resource type="FontFile" uid="uid://jhdjv388k8ag" path="res://GodotASCIIToolKit/Resources/Font/Mx437_IBM_VGA_8x16.ttf" id="4_cipsj"]
+
+[sub_resource type="Theme" id="Theme_yrdss"]
+resource_local_to_scene = true
+default_font = ExtResource("4_cipsj")
+default_font_size = 16
+
+[sub_resource type="Theme" id="Theme_xa5bw"]
+resource_local_to_scene = true
+default_font = ExtResource("4_cipsj")
+default_font_size = 16
+
+[sub_resource type="Theme" id="Theme_gntje"]
+resource_local_to_scene = true
+default_font = ExtResource("4_cipsj")
+default_font_size = 16
+
+[sub_resource type="Animation" id="Animation_kriwc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_71hay"]
+resource_name = "fade_in"
+length = 0.16667001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yrdss"]
+resource_name = "fade_in_out"
+length = 1.0000033
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6666667, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cipsj"]
+resource_name = "fade_out"
+length = 0.16667001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cipsj"]
+_data = {
+&"RESET": SubResource("Animation_kriwc"),
+&"fade_in": SubResource("Animation_71hay"),
+&"fade_in_out": SubResource("Animation_yrdss"),
+&"fade_out": SubResource("Animation_cipsj")
+}
+
+[node name="ASCIIGodotSplashScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c175r")
+metadata/_custom_type_script = "uid://cppsjiuyxkmqm"
+
+[node name="BackgroundRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="LabelGroup" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 0
+offset_left = 424.0
+offset_top = 64.0
+offset_right = 856.0
+offset_bottom = 640.0
+script = ExtResource("2_kriwc")
+metadata/_custom_type_script = "uid://cppsjiuyxkmqm"
+
+[node name="ASCIIGodotLogo" parent="LabelGroup" groups=["splash_screen_labels"] instance=ExtResource("2_71hay")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.056
+anchor_right = -0.056
+offset_left = 0.19200134
+offset_right = 480.19202
+grow_horizontal = 2
+theme = SubResource("Theme_yrdss")
+metadata/_edit_lock_ = true
+
+[node name="ASCIIGodot" parent="LabelGroup" groups=["splash_screen_labels"] instance=ExtResource("3_kriwc")]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 432.0
+offset_right = 392.0
+offset_bottom = 528.0
+theme = SubResource("Theme_xa5bw")
+text = " .88888.                 dP            dP  
+d8'   `88                88            88  
+88        .d8888b. .d888b88 .d8888b. d8888P
+88   YP88 88'  `88 88'  `88 88'  `88   88  
+Y8.   .88 88.  .88 88.  .88 88.  .88   88  
+ `88888'  `88888P' `88888P8 `88888P'   dP  "
+metadata/_edit_lock_ = true
+
+[node name="ASCIIGameEngine" parent="LabelGroup" groups=["splash_screen_labels"] instance=ExtResource("3_kriwc")]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 528.0
+offset_right = 352.0
+offset_bottom = 576.0
+theme = SubResource("Theme_gntje")
+text = " __ _     __    __    _____    __
+/__|_||V||_    |_ |\\|/__ | |\\||_ 
+\\_|| || ||__   |__| |\\_|_|_| ||__"
+metadata/_edit_lock_ = true
+
+[node name="FadePlayer" type="AnimationPlayer" parent="LabelGroup"]
+libraries = {
+&"": SubResource("AnimationLibrary_cipsj")
+}
