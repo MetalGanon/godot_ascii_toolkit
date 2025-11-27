@@ -52,6 +52,7 @@ Y8.   .88  88     88  88        88    .8P 88    88    d8'   .8P
 
 - Bigfig - Glenn Chappell
 - Nancyj - Vampyr
+- [Mx437 IBM VGA 8x16](https://fontinfo.opensuse.org/fonts/Mx437IBMVGA8x16Regular.html)
 
  ```
   _  __ ________   ___ _  _     __
@@ -59,5 +60,6 @@ Y8.   .88  88     88  88        88    .8P 88    88    d8'   .8P
 | |__)\___|__|_    | \_/\_/|____)
 ```
 
+- 
 - [ASCII Art Archive](https://www.asciiart.eu/)
 - [ascii-image-converter](https://github.com/TheZoraiz/ascii-image-converter)
