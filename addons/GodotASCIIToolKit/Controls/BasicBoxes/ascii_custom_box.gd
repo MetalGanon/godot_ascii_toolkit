@@ -1,9 +1,29 @@
 @tool
 class_name ASCIICustomBox
 extends ASCIIControl
+## Plugin custom type ##########################################################
+## Description -----------------------------------------------------------------
 ## A specialized ASCIILabel to draw boxes
-##
 ## Defines the characters you want to surround your box
+##
+## Enums -----------------------------------------------------------------------
+## - unamed: {VERTICAL_LINE,...}
+##     Correspondance between box_chars index and line of the box.
+##     e.g. index 0 of array box_chars is the character corresponding to the 
+##     vertical lines of the box.
+## Exported properties ---------------------------------------------------------
+## - box_chars: Array[char] (I know char do not exist in Godot)
+##     Is the background visible or not.
+##
+## Nodes created ---------------------------------------------------------------
+## - Nodes of all super class
+## - "BoxLabel": ASCIILabel
+##     Contains the label of the box.
+##
+## Author(s) -------------------------------------------------------------------
+## Vost
+##
+################################################################################
 
 ## Enums
 enum {
@@ -23,22 +43,17 @@ enum {
 
 
 func _init() -> void:
-	
 	minimum_size_tile = Vector2i(2,2)
-	custom_minimum_size = Vector2i(
-		2*ASCIISettings.TILE_SIZE_PX.X,
-		2*ASCIISettings.TILE_SIZE_PX.Y
-	)
-	# Adding box label
+
+
+func _add_required_nodes():
+	super()
+	## Adding box label
 	var box_label = ASCIILabel.new()
 	box_label.clip_text = true
 	box_label.name = "BoxLabel"
 	box_label.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(box_label)
-
-func _ready():
-	super()
-	_update()
 
 
 func _on_property_changed(prop_name, prop_value):
@@ -75,7 +90,3 @@ func _compute_box_str() -> String:
 func _update():
 	## Compute the box and change the text of the label accordingly
 	$BoxLabel.text = _compute_box_str()
-
-
-func _invalid_update():
-	$BoxLabel.text = ""

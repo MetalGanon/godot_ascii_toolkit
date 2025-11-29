@@ -1,15 +1,30 @@
+@tool
 class_name ASCIIControl
 extends Control
-## Specialization class of label for ASCII purposes
-##
+## Plugin custom type ##########################################################
+## Description -----------------------------------------------------------------
+## Specialization class of Control for ASCII grids.
 ## Provides methods to check placement of current node within the ASCII Grid.
+##
+## Internal properties ---------------------------------------------------------
+## - size_tile: Vector2i
+##     Size in tiles (instead of pixels)
+## - position_tile: Vector2i
+##     Position in tiles (instead of pixels)
+## - minimum_size_tile: Vector2i
+##     If the size is inferior to minimum size, no update is performed.
+##
+## Author(s) -------------------------------------------------------------------
+## Vost
+##
+################################################################################
 
 ## Size in tiles (instead of pixels)
 var size_tile: Vector2i = Vector2i(3, 3)
  ## Position in tiles (instead of pixels)
 var position_tile: Vector2i = Vector2i(0, 0) 
 ## If the size is inferior to minimum size, no update is performed. 
-var minimum_size_tile: Vector2i = Vector2i(3, 3)
+var minimum_size_tile: Vector2i = Vector2i(2, 2)
 
 signal property_changed(name, value)
 
@@ -17,7 +32,12 @@ signal property_changed(name, value)
 func _enter_tree():
 	if Engine.is_editor_hint():
 		size_tile = minimum_size_tile
+		custom_minimum_size = Vector2i(
+			minimum_size_tile.x*ASCIISettings.TILE_SIZE_PX.X,
+			minimum_size_tile.y*ASCIISettings.TILE_SIZE_PX.Y
+		)
 		set_deferred("size", custom_minimum_size)
+	_add_required_nodes()
 
 
 func _ready():
@@ -25,21 +45,18 @@ func _ready():
 		check_grid_conforming(), 
 		"Grid of ASCIIControl named %s is not conforming..." % name
 	)
-
 	property_changed.connect(_on_property_changed)
 	_update_size_tile()
+	_update()
 
 
-func _check_minimum_size_tile() -> bool:
-	## Check if size in tile is superior to minimum size.
-	## True if size is correct, false if not.
-	return (
-		size_tile.x >= minimum_size_tile.x and 
-		size_tile.y >= minimum_size_tile.y
-	)
+func _add_required_nodes():
+	## To be overriden in child class
+	pass
 
 
 func _on_property_changed(_prop_name, _prop_value):
+	## To be overriden in child class
 	pass
 
 
@@ -47,20 +64,12 @@ func _update_protected():
 	## Update the text after checking it is required
 	if _size_tile_changed():
 		_update_size_tile()
-	if _check_minimum_size_tile():
-		_update()
-	else:
-		_invalid_update()
-
+	_update()
 
 func _update():
 	## To be overriden in child class
 	pass
 
-
-func _invalid_update():
-	## To be overriden in child class
-	pass
 
 func _size_tile_changed() -> bool:
 	## Checks if the size in tiles has changed.
