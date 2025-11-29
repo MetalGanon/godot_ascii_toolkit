@@ -1,26 +1,23 @@
 @tool
 extends Node
-## Godot ASCII ToolKit #########################################################
+## Configuration script ########################################################
+## This script is autoloaded when the plugin is activated.
+## Description -----------------------------------------------------------------
+## Configuration script for the Godot ASCII ToolKit.
 ##
-## Configuration file for the Godot ASCII ToolKit.
+## For now, it only manages ASCII grid resolution aspects.
 ##
-## Specify the credits scenes and main menu after the Godot ASCII splash.
-## 
-## The tools are intended to be used in a Godot project and editor with specific
-## settings. 
+## This global tool overrides the viewport size.
 ##
-## Notably:
-## - Editor settings
-## -- Grid size for 2D editor must be TILE_SIZE_PX
-## -- Grid snap activated
-## - ProjectSettings
-## -- Viewport size must be VIEWPORT_SIZE_PX (set in the script).
+## Enums -----------------------------------------------------------------------
+## - TILE_SIZE_PX: {X, Y}
+##     Size of a tile in pixels.
+## - VIEWPORT_SIZE_PX: {X, Y}
+##     Size of viewport in pixels.
+## - VIEWPORT_SIZE_IJ: {I, J}
+##     Size of viewport in tiles.
 ##
-## This global tool overrides the mentioned settings when I know how to do it.
-##
-## This script must be loaded as global.
-################################################################################
-##
+## Comments --------------------------------------------------------------------
 ## Bonus: list of convenient resolutions with tiles of 8 x 16
 ##
 ## First X x Y, J x I with I the number of line and J of columns
@@ -43,9 +40,10 @@ extends Node
 ## 1024 x 160	128 x 40
 ## 1280 x 800	160 x 50
 ## 1664 x 1040	208 x 65
+## Author(s) -------------------------------------------------------------------
+## Vost
+##
 ################################################################################
-# Size of the viewport before activating the plugin
-var original_viewport_size: Vector2i
 
 enum TILE_SIZE_PX {
 	X = 8,
@@ -59,6 +57,11 @@ enum VIEWPORT_SIZE_IJ {
 	J = VIEWPORT_SIZE_PX.X/TILE_SIZE_PX.X, # number of columns (X)
 	I = VIEWPORT_SIZE_PX.Y/TILE_SIZE_PX.Y, # number of lines (Y)
 }
+
+
+## Size of the viewport before activating the plugin
+var original_viewport_size: Vector2i
+
 
 func _enter_tree() -> void:
 	# Initialization of the plugin goes here.
