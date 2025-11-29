@@ -1,8 +1,0 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dismfahxdsqkk"]
-
-[ext_resource type="FontFile" uid="uid://jhdjv388k8ag" path="res://GodotASCIIToolKit/Resources/Font/Mx437_IBM_VGA_8x16.ttf" id="1_i4gxy"]
-
-[resource]
-resource_local_to_scene = true
-default_font = ExtResource("1_i4gxy")
-default_font_size = 16
