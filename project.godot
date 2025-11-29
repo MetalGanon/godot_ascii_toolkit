@@ -14,7 +14,6 @@ config/name="Godot ASCII ToolKit"
 config/description="Godot ASCII ToolKit
 Version 0.0.0
 An open source ASCII toolkit for the game engine Godot"
-run/main_scene="uid://dfd3acq10xm8i"
 config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
@@ -24,7 +23,7 @@ config/icon="uid://mv2rgwgi1lle"
 
 [autoload]
 
-GodotASCIIToolKit="*res://GodotASCIIToolKit/godot_ascii_toolkit.gd"
+ASCIISettings="*res://addons/GodotASCIIToolKit/ascii_settings.gd"
 
 [debug]
 
@@ -35,6 +34,10 @@ gdscript/warnings/integer_division=0
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GodotASCIIToolKit/plugin.cfg")
 
 [filesystem]
 

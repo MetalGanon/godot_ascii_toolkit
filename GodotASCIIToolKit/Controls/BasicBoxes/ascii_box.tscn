@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://mm5ykk6g1ii4"]
-
-[ext_resource type="PackedScene" uid="uid://d0i4mx1rfy4h0" path="res://GodotASCIIToolKit/Controls/BasicBoxes/ascii_background_custom_box.tscn" id="1_7gv3r"]
-[ext_resource type="Script" uid="uid://c5fn22c2ci1nx" path="res://GodotASCIIToolKit/Controls/BasicBoxes/ascii_box.gd" id="2_8qxec"]
-
-[node name="ASCIIBox" instance=ExtResource("1_7gv3r")]
-script = ExtResource("2_8qxec")
-box_type = 0
