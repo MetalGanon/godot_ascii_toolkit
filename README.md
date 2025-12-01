@@ -4,7 +4,7 @@
 <tr>
 <td>
 
-**An open source ASCII toolkit for the game engine Godot!**
+**An open source ASCII toolkit for the Godot!**
 
 ## Generalities
 
