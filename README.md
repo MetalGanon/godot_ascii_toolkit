@@ -6,7 +6,7 @@ This is the official repository for the GodotASCIIToolKit, a plugin of the game 
 
 This repository contains:
 - the sources of the plugin in [`addons/GodotASCIIToolKit`](./addons/GodotASCIIToolKit);
-- a minimal working Godot project using that plugin (only composed of a main menu). 
+- a minimal working [Godot project](project.godot) using that plugin (only composed of a main menu). 
 
 ```
                       ...          ...                      
