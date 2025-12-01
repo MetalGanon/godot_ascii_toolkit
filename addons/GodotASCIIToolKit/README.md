@@ -13,7 +13,7 @@ As mentioned in [this README](../../README.md), the idea is to develop a tool fo
 - signal handling,
 - animation players.
 
-So I created tools scripts to mimick the behavior of some control nodes in Godot. To do that, I relied mainly on the Label node. I made a custom version of it called `ASCIILabel` loading a custom theme ([`ascii_label_theme.tres`](Resources/Godot/Themes/ascii_label_theme.tres)) which basically ensure that the Font is [Mx437_IBM_VGA_8x16](Resources/Font/), with correct size of 16 and no line spacing. From that, I build on top to make boxes, text boxes, buttons, *etc.*
+So I created tools scripts to mimick the behavior of some control nodes in Godot. To do that, I relied mainly on the Label node. I made a custom version of it called `ASCIILabel` loading a custom theme ([`ascii_label_theme.tres`](Resources/Godot/Themes/)) which basically ensure that the Font is [Mx437_IBM_VGA_8x16](Resources/Font/), with correct size of 16 and no line spacing. From that, I build on top to make boxes, text boxes, buttons, *etc.*
 
 I am not sure it is a good idea, so please feel free to share your objections and throught with me in the issues section.
 
@@ -32,7 +32,7 @@ I made a Godot ASCII splash screen which replace the original one by default.
 
 ## ASCIISettings
 
-There is an autoload when the plugin is activated : [`ASCIISettings`]()
+There is an autoload when the plugin is activated : [`ASCIISettings`](ascii_settings.gd)
 
 ## List of custom types
 
