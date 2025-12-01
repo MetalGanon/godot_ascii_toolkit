@@ -8,6 +8,36 @@ This repository contains:
 - the sources of the plugin in [`addons/GodotASCIIToolKit`](./addons/GodotASCIIToolKit);
 - a minimal working [Godot project](project.godot) using that plugin. It involves a ASCII splash screen of Godot, a main menu and a credits scene. 
 
+
+
+While this doesn't work for all dialects of Markdown, I got this to work with GitLab, GitHub, and mdBook.
+
+Basically, you create the table via HTML. Markdown and HTML don't mix well, but if you surround the Markdown with whitespace, sometimes the Markdown can be recognized.
+
+https://docs.gitlab.com/ee/user/markdown.html#inline-html
+
+<table>
+<tr>
+<td>
+
+## Disclaimer
+
+English is not my native language, so sorry in advance if I am not clear enough when explaining things. 
+
+## Description
+
+This plugin aims at providing tools to develop ASCII games in Godot while still using all its handy features at maximum. 
+
+For now, only some Controls (User Interface) tools are available. 
+
+## Usage
+
+To use it, copy the directory `addons/GodotASCIIToolKit` in your Godot project (`res://addons/GodotASCIIToolKit`) and activate the plugin in the project settings menu.
+
+
+</td>
+<td>
+
 ```
                       ...          ...                      
                  ..++++++.        .++++++..                 
@@ -37,6 +67,8 @@ This repository contains:
                     ......++++++++.......                   
 ```
 
+</td>
+
 ## Disclaimer
 
 English is not my native language, so sorry in advance if I am not clear enough when explaining things. 
@@ -55,15 +87,15 @@ To use it, copy the directory `addons/GodotASCIIToolKit` in your Godot project (
 
 I can draw a bit, but I am not able to make beautiful game assets. Being mainly suited for programming, ASCII-based graphics seemed natural.
 
-Moreover, I am truly amazed by the quality of certain forms of ASCII art despite their apparent simplicity. I am a huge fan of [Dwarf Fortress](https://www.bay12games.com/dwarves/) and [Candy Box 2](https://candybox2.github.io/) but here my two main reference is [Stone Story RPG](https://stonestoryrpg.com/). It is an idle game (so almost exclusively pieces of UI) and, even if it is not scrictly ASCII, it is the most beautiful ASCII-based video game I have ever seen.
+Moreover, I am truly amazed by the quality of certain forms of ASCII art despite their apparent simplicity. I am a huge fan of [Dwarf Fortress](https://www.bay12games.com/dwarves/) and [Candy Box 2](https://candybox2.github.io/) but my main reference here is [Stone Story RPG](https://stonestoryrpg.com/). It is an idle game (so almost exclusively pieces of UI) and, even if it is not scrictly ASCII, it is the most beautiful ASCII-based video game I have ever seen.
 
-I have been using Godot to program games for 4 years, so the question rose naturally: how can I program a Stone Story RPG like using godot?
+I have been using Godot to program games for 4 or 5 years, so the question raised naturally: *how can I program a Stone Story RPG-like using godot?*
 
-I made a quick review of existing features:
-- Nofacer made an [ASCII Screen plugin](https://godotengine.org/asset-library/asset/4336) to put characters on a screen manually in a very [RoguelikeDev](https://www.reddit.com/r/roguelikedev/wiki/). While it is awesome for learning how to code, making something as graphically complex as Stone Story RPG with this would be a real pain. Furthermore, it does not to take advantage of Godot and its great features, especially the WYSIWYG editor. 
-- People also made ASCII shaders (*e.g.* [Dan's](https://godotshaders.com/shader/ascii-shader/)) which is so cool! But maybe more suited as a filter for 3D games aiming for a retro vibe. Out of the present scope.
+I made a quick review of existing tools and assets:
+- user nofacer made an [ASCII Screen plugin](https://godotengine.org/asset-library/asset/4336) to put characters on a screen manually in a very [RoguelikeDev](https://www.reddit.com/r/roguelikedev/wiki/) way. While it is awesome for learning how to code, making something as graphically complex as Stone Story RPG with this method would be a real pain. Furthermore, it does not take advantage of Godot and its great features, especially the WYSIWYG editor and animation players. 
+- People also made ASCII shaders (*e.g.* [Dan's](https://godotshaders.com/shader/ascii-shader/)) which is very cool! However, it seems more suited as a filter for 3D games aiming for a retro vibe. Out of the present scope.
 
-So you know what they say, when the right tool does not exist, just make it; that what I do!
+So you know what they say, when the right tool does not exist, then you have to build it; that's what I do!
 
 ## Further information
 
@@ -79,6 +111,8 @@ d8'   `88  88    `8b  88        88    `8b 88    88    88.    "'
 Y8.   .88  88     88  88        88    .8P 88    88    d8'   .8P
  Y88888P'  dP     dP  88888888P 8888888P  dP    dP     Y88888P 
  ```
+
+
 
  ```
   _  __ ________    __ _    ___ __
