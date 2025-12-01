@@ -85,4 +85,6 @@ I will try to document functions more exhaustively.
 
 As long as they are properly documented and respect [gdscript styling](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html), all contributions are welcome!
 
-# Ask for help or new features in the issues!
+## Ask for help or new features
+
+Do not hesitate to ask, I know I am not always clear in my explanations. Also, it is always nice to have feedbacks from users to enhance the tool! :) 
