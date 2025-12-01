@@ -49,6 +49,9 @@ func _ready():
 	super()
 	$BoxLabel.visible = box_visible
 	$TextLabel.text = text
+	$TextLabel.horizontal_alignment = horizontal_alignment
+	$TextLabel.vertical_alignment = vertical_alignment
+	$TextLabel.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
 	_update_margins()
 
 
