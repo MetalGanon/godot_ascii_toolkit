@@ -3,7 +3,7 @@ class_name ASCIIBox
 extends ASCIIBackgroundCustomBox
 ## Plugin custom type ##########################################################
 ## Description -----------------------------------------------------------------
-## ASCII Box with list for type of boxes
+## ASCII Box where the box characters are chosen from a list of types.
 ##
 ## Statics ---------------------------------------------------------------------
 ## - chars: Array[Array[char]]

@@ -65,9 +65,6 @@ const CREDITS_SCENE = "res://addons/GodotASCIIToolKit/Credits/ascii_credits_scre
 ## Put ASCII GODOT Splash screen
 const SPLASH = false
 
-var splash_screen: bool = true
-## Size of the viewport before activating the plugin
-
 
 func _enter_tree() -> void:
 	## Adding splash screen
@@ -75,7 +72,7 @@ func _enter_tree() -> void:
 		var main_scene = ProjectSettings.get_setting(
 			"application/run/main_scene"
 		)
-		if splash_screen:
+		if SPLASH:
 			ProjectSettings.set_setting(
 				"application/run/main_scene",
 				"res://addons/GodotASCIIToolKit/Splash/ascii_godot_splash_screen.tscn"
@@ -93,11 +90,15 @@ func _enter_tree() -> void:
 			"display/window/size/viewport_height", VIEWPORT_SIZE_PX.Y
 		)
 		ProjectSettings.set_setting("application/boot_splash/image", false)
+		ProjectSettings.set_setting(
+			"rendering/textures/canvas_textures/default_texture_filter",
+			0
+		)
 
 
 func _exit_tree() -> void:
 	if Engine.is_editor_hint():
-		if splash_screen:
+		if SPLASH:
 			var main_scene = ProjectSettings.get_setting(
 				"godot_ascii_toolkit/scene_after_splash"
 			)

@@ -1,6 +1,37 @@
 @tool
 class_name ASCIICustomTextBox
 extends ASCIIBox
+## Plugin custom type ##########################################################
+## Description -----------------------------------------------------------------
+## Text box with custom margins
+##
+## Enums -----------------------------------------------------------------------
+## - unamed: {LEFT, RIGHT, TOP, BOTTOM}
+##     Enum for margins index.
+##
+## Exported properties ---------------------------------------------------------
+## - text: String
+##     Text to be displayed inside the textbox.
+## - box_visible: bool
+##     Boolean that sets the visibility of the framebox.
+## - horizontal_alignment: int
+##     Horizontal alignment of the text within the framebox.
+## - vertical_alignment: int
+##     Vertical alignment of the text within the framebox.
+## - margins: Array[int] (length = 4)
+##     Value of the margins of the text with respect to the framebox in tiles.
+##     Corresponding index is given by enum. 
+##
+## Nodes created ---------------------------------------------------------------
+## - Nodes of all super class
+## - "TextLabel": ASCIILabel
+##     Displays the text of the text box.
+##
+## Author(s) -------------------------------------------------------------------
+## Vost
+##
+################################################################################
+
 ## Text box with custom margins
 ##
 ## Some more description

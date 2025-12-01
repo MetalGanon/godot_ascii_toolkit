@@ -3,7 +3,7 @@ class_name ASCIIBoxedTextButton
 extends ASCIICustomTextBox
 ## Plugin custom type ##########################################################
 ## Description -----------------------------------------------------------------
-## ASCII looking button with a framebox.
+## ASCII looking button with text and framebox.
 ## Includes:
 ## - background lightening when hoovering,
 ## - background/text color inverting when clicking.
