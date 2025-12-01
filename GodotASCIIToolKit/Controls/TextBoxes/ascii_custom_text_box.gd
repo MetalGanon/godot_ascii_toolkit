@@ -11,7 +11,7 @@ enum {
 	BOTTOM,
 }
 
-@export var text: String = "Worker of the world, unite!":
+@export var text: String:
 	set(value):
 		text = value
 		property_changed.emit("text", value)
@@ -45,8 +45,11 @@ enum {
 		property_changed.emit("margins",value)
 
 
-func _init():
-	_update_minimum_size_tile()
+func _ready():
+	super()
+	$BoxLabel.visible = box_visible
+	$TextLabel.text = text
+	_update_margins()
 
 
 func _add_required_nodes():
@@ -58,14 +61,18 @@ func _add_required_nodes():
 	text_label.text = text
 	text_label.horizontal_alignment = horizontal_alignment
 	text_label.vertical_alignment = vertical_alignment
-	text_label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	text_label.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
 	add_child(text_label)
-	_update_margins()
 
 
-func _update():
+func _remove_required_nodes():
+	_remove_and_free_child("TextLabel")
+
+
+func _default_properties():
 	super()
-	_update_margins()
+	_update_minimum_size_tile()
+	text = "Worker of the world, unite!"
 
 
 func _update_minimum_size_tile():
@@ -73,6 +80,11 @@ func _update_minimum_size_tile():
 		1+margins[LEFT]+1+margins[RIGHT]+1, # box + margins + 1 char
 		1+margins[TOP]+1+margins[BOTTOM]+1, # box + margins + 1 char
 	)
+
+
+func _update():
+	super()
+	_update_margins()
 
 
 func _on_property_changed(prop_name, prop_value):

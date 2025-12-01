@@ -71,6 +71,18 @@ func _enter_tree() -> void:
 		preload("Controls/TextBoxes/ascii_custom_text_box.gd"),
 		preload("godot_ascii_toolkit_icon.png"),
 	)
+	add_custom_type(
+		"ASCIITitledBox",
+		"ASCIITitledBox",
+		preload("Controls/TextBoxes/ascii_titled_box.gd"),
+		preload("godot_ascii_toolkit_icon.png"),
+	)
+	add_custom_type(
+		"ASCIIBoxedTextButton",
+		"ASCIIBoxedTextButton",
+		preload("Controls/Buttons/ascii_boxed_text_button.gd"),
+		preload("godot_ascii_toolkit_icon.png"),
+	)
 
 
 func _exit_tree() -> void:
@@ -81,3 +93,5 @@ func _exit_tree() -> void:
 	remove_custom_type("ASCIIBackgroundCustomBox")
 	remove_custom_type("ASCIIBox")
 	remove_custom_type("ASCIICustomTextBox")
+	remove_custom_type("ASCIITitledBox")
+	remove_custom_type("ASCIIBoxedTextButton")

@@ -58,32 +58,50 @@ enum VIEWPORT_SIZE_IJ {
 	I = VIEWPORT_SIZE_PX.Y/TILE_SIZE_PX.Y, # number of lines (Y)
 }
 
+## Main scene after splash
+const SCENE_AFTER_SPLASH = "res://addons/GodotASCIIToolKit/Credits/ascii_credits_screen.tscn"
 
+## Put ASCII GODOT Splash screen
+const SPLASH = false
+
+var splash_screen: bool = true
 ## Size of the viewport before activating the plugin
-var original_viewport_size: Vector2i
 
 
 func _enter_tree() -> void:
-	# Initialization of the plugin goes here.
-	original_viewport_size.x = ProjectSettings.get_setting(
-		"display/window/size/viewport_width"
-	)
-	original_viewport_size.y = ProjectSettings.get_setting(
-		"display/window/size/viewport_height"
-	)
-	ProjectSettings.set_setting(
-		"display/window/size/viewport_width", VIEWPORT_SIZE_PX.X
-	)
-	ProjectSettings.set_setting(
-		"display/window/size/viewport_height", VIEWPORT_SIZE_PX.Y
-	)
+	## Adding splash screen
+	if Engine.is_editor_hint():
+		var main_scene = ProjectSettings.get_setting(
+			"application/run/main_scene"
+		)
+		if splash_screen:
+			ProjectSettings.set_setting(
+				"application/run/main_scene",
+				"res://addons/GodotASCIIToolKit/Splash/ascii_godot_splash_screen.tscn"
+			)
+		else:
+			if main_scene.is_empty():
+				ProjectSettings.set_setting(
+					"application/run/main_scene",
+					SCENE_AFTER_SPLASH
+				)
+		ProjectSettings.set_setting(
+			"display/window/size/viewport_width", VIEWPORT_SIZE_PX.X
+		)
+		ProjectSettings.set_setting(
+			"display/window/size/viewport_height", VIEWPORT_SIZE_PX.Y
+		)
 
 
 func _exit_tree() -> void:
-	# Clean-up of the plugin goes here.
-	ProjectSettings.set_setting(
-		"display/window/size/viewport_width", original_viewport_size.x
-	)
-	ProjectSettings.set_setting(
-		"display/window/size/viewport_height", original_viewport_size.y
-	)
+	if Engine.is_editor_hint():
+		if splash_screen:
+			var main_scene = ProjectSettings.get_setting(
+				"godot_ascii_toolkit/scene_after_splash"
+			)
+			if main_scene != "res://addons/GodotASCIIToolKit/Credits/ascii_credits_screen.tscn":
+				main_scene = ""
+			ProjectSettings.set_setting(
+				"application/run/main_scene",
+				main_scene
+			)
