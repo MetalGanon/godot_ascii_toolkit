@@ -33,11 +33,23 @@
 
 ## Description
 
-This repository is a plugin for the game engine Godot. 
+This repository contain a plugin for the game engine [Godot](https://godotengine.org/).
+
+This plugin aims at providing tools to develop ASCII games in Godot while still using all its handy features at maximum. 
+
+For now, only some Controls (User Interface) tools are available. 
+
+## Usage
 
 To use it, copy the directory GodotASCIIToolKit is your Godot project (`res://addons/GodotASCIIToolKit`) and activate the plugin in the project settings menu.
 
-For further information and documentation of the plugin in details, please refer to [this README](GodotASCIIToolKit/README.md).
+## Motivations
+
+
+
+## Further information
+
+For documentation and details about the plugin, please refer to [this README](GodotASCIIToolKit/README.md).
 
 ## Credits
 
