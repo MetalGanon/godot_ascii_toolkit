@@ -16,6 +16,7 @@ run/main_scene="res://addons/GodotASCIIToolKit/Splash/ascii_godot_splash_screen.
 config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/show_image=false
 boot_splash/image=false
+config/icon="uid://mv2rgwgi1lle"
 
 [autoload]
 
