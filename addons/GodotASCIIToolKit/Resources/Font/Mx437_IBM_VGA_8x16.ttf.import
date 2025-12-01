@@ -2,7 +2,7 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://jhdjv388k8ag"
+uid="uid://c4ojck3k68pp1"
 path="res://.godot/imported/Mx437_IBM_VGA_8x16.ttf-d0c653004a199010ba256d0954ba11e1.fontdata"
 
 [deps]
@@ -17,8 +17,8 @@ antialiasing=1
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
-msdf_pixel_range=8
-msdf_size=48
+msdf_pixel_range=16
+msdf_size=64
 allow_system_fallback=true
 force_autohinter=false
 modulate_color_glyphs=false
