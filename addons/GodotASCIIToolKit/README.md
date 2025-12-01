@@ -53,7 +53,7 @@ Maybe it would be simpler if all those configurations were handled through text 
 - `ASCIIBackgroundCustomBox(ASCIICustomBox)`: `ASCIICustomBox` with a solid background.
 - `ASCIIBox(ASCIIBackgroundCustomBox)`: ASCII Box where the box characters are chosen from a list of types.
 - `ASCIICustomTextBox(ASCIIBox)`: ASCII text box with custom margins
-- `ASCIITitledBox(ASCIIBox)`: A box with a title on the frame.
+- `ASCIITitledBox(ASCIIBox)`: A box with a title on the frame. ![ASCIIBox](../../.illustrations/ASCIIbox.gif)
 - `ASCIIBoxedTextButton(ASCIICustomTextBox)`: ASCII looking button with text and framebox.
 
 ## Documentation
