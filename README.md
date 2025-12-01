@@ -68,6 +68,8 @@ To use it, copy the directory `addons/GodotASCIIToolKit` in your Godot project (
 ```
 
 </td>
+</tr>
+</table>
 
 ## Disclaimer
 
