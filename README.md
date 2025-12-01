@@ -33,6 +33,12 @@
 
 ## Description
 
+This repository is a plugin for the game engine Godot. 
+
+To use it, copy the directory GodotASCIIToolKit is your Godot project (`res://addons/GodotASCIIToolKit`) and activate the plugin in the project settings menu.
+
+For further information and documentation of the plugin in details, please refer to [this README](GodotASCIIToolKit/README.md).
+
 ## Credits
 
 ```
