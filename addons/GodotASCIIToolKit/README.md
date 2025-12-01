@@ -32,10 +32,51 @@ I made a Godot ASCII splash screen which replace the original one by default.
 
 ## ASCIISettings
 
-There is an autoload when the plugin is activated : [`ASCIISettings`](ascii_settings.gd)
+There is an autoload when the plugin is activated : [`ASCIISettings`](ascii_settings.gd). This is where you can:
+- change the game resolution and grid size (enums `TILE_SIZE_PX` and `VIEWPORT_SIZE_PX`),
+- toggle on or off the Godot ASCII Splash Screen (enum `SPLASH`),
+- The scene after the Godot ASCII Splash Screen (enum `SCENE_AFTER_SPLASH`).
+
+Maybe it would be simpler if all those configurations were handled through text files? Please, don't hesitate to give feedbacks. 
 
 ## List of custom types
 
+(*parenthesis indicate inheritance*)
+
+- `ASCIILabel(Label)`: Just a label with the good properties for ASCII tools.
+- `ASCIIControl(Control)`: Specialization class of Control for ASCII grids.
+- `ASCIICustomBox(ASCIIControl)`: A specialized `ASCIIControl` containing a `ASCIILabel` to draw boxes. Box characters are customizable.
+- `ASCIIBackgroundCustomBox(ASCIICustomBox)`: `ASCIICustomBox` with a solid background.
+- `ASCIIBox(ASCIIBackgroundCustomBox)`: ASCII Box where the box characters are chosen from a list of types.
+- `ASCIICustomTextBox(ASCIIBox)`: ASCII text box with custom margins
+- `ASCIITitledBox(ASCIIBox)`: A box with a title on the frame.
+- `ASCIIBoxedTextButton(ASCIICustomTextBox)`: ASCII looking button with text and framebox.
+
 ## Documentation
+
+Every custom type is documented using the following the template given in 
+
+```
+## Script type #################################################################
+## Description -----------------------------------------------------------------
+##
+## Statics ---------------------------------------------------------------------
+##
+## Enums -----------------------------------------------------------------------
+##
+## Exported properties ---------------------------------------------------------
+##
+## Internal properties ---------------------------------------------------------
+## 
+## Signals ---------------------------------------------------------------------
+##
+## Nodes created ---------------------------------------------------------------
+##
+## Comments --------------------------------------------------------------------
+## 
+## Author(s) -------------------------------------------------------------------
+##
+################################################################################
+```
 
 ## Contributing
