@@ -14,14 +14,12 @@ While this doesn't work for all dialects of Markdown, I got this to work with Gi
 
 Basically, you create the table via HTML. Markdown and HTML don't mix well, but if you surround the Markdown with whitespace, sometimes the Markdown can be recognized.
 
-https://docs.gitlab.com/ee/user/markdown.html#inline-html
+## Disclaimer
 
 <table>
 <tr>
 <td>
-
-## Disclaimer
-
+  
 English is not my native language, so sorry in advance if I am not clear enough when explaining things. 
 
 ## Description
