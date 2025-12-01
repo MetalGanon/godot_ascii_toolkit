@@ -5,7 +5,7 @@
 This is the official repository for the GodotASCIIToolKit, a plugin of the game engine [Godot](https://godotengine.org/).
 
 This repository contains:
-- the sources of the plugin in [`addons/GodotASCIIToolKit`](addons/GodotASCIIToolkit);
+- the sources of the plugin in [`addons/GodotASCIIToolKit`](./addons/GodotASCIIToolKit);
 - a minimal working Godot project using that plugin (only composed of a main menu). 
 
 ```
