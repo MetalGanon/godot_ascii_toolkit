@@ -1,0 +1,131 @@
+[gd_scene load_steps=8 format=3 uid="uid://teu5gfeuqjx8"]
+
+[ext_resource type="Script" uid="uid://cehr1hv6gtie" path="res://main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Script" uid="uid://dob44nskp0ifa" path="res://addons/GodotASCIIToolKit/Controls/Buttons/ascii_boxed_text_button.gd" id="2_7vrkn"]
+
+[sub_resource type="Animation" id="Animation_pa3ia"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qdtf2"]
+resource_name = "fade_in"
+length = 0.16667001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bbtaf"]
+resource_name = "fade_in_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.6666667, 0.8333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ropdf"]
+resource_name = "fade_out"
+length = 0.16667001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qdtf2"]
+_data = {
+&"RESET": SubResource("Animation_pa3ia"),
+&"fade_in": SubResource("Animation_qdtf2"),
+&"fade_in_out": SubResource("Animation_bbtaf"),
+&"fade_out": SubResource("Animation_ropdf")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("1_7vrkn")
+
+[node name="ASCIIPlayButton" type="Control" parent="Control"]
+custom_minimum_size = Vector2(16, 32)
+layout_mode = 1
+offset_left = 576.0
+offset_top = 304.0
+offset_right = 704.0
+offset_bottom = 352.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+script = ExtResource("2_7vrkn")
+text = "PLAY"
+horizontal_alignment = 1
+metadata/_custom_type_script = "uid://dob44nskp0ifa"
+
+[node name="ASCIIQuitButton" type="Control" parent="Control"]
+custom_minimum_size = Vector2(16, 32)
+anchors_preset = 0
+offset_left = 576.0
+offset_top = 352.0
+offset_right = 704.0
+offset_bottom = 400.0
+mouse_default_cursor_shape = 2
+script = ExtResource("2_7vrkn")
+text = "QUIT"
+horizontal_alignment = 1
+metadata/_custom_type_script = "uid://dob44nskp0ifa"
+
+[node name="FadePlayer" type="AnimationPlayer" parent="Control"]
+libraries = {
+&"": SubResource("AnimationLibrary_qdtf2")
+}

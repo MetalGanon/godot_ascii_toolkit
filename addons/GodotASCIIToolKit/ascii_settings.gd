@@ -59,7 +59,8 @@ enum VIEWPORT_SIZE_IJ {
 }
 
 ## Main scene after splash
-const SCENE_AFTER_SPLASH = "res://addons/GodotASCIIToolKit/Credits/ascii_credits_screen.tscn"
+const SCENE_AFTER_SPLASH = "res://main_menu.tscn"
+const CREDITS_SCENE = "res://addons/GodotASCIIToolKit/Credits/ascii_credits_screen.tscn"
 
 ## Put ASCII GODOT Splash screen
 const SPLASH = false
@@ -91,6 +92,7 @@ func _enter_tree() -> void:
 		ProjectSettings.set_setting(
 			"display/window/size/viewport_height", VIEWPORT_SIZE_PX.Y
 		)
+		ProjectSettings.set_setting("application/boot_splash/image", false)
 
 
 func _exit_tree() -> void:
@@ -99,7 +101,7 @@ func _exit_tree() -> void:
 			var main_scene = ProjectSettings.get_setting(
 				"godot_ascii_toolkit/scene_after_splash"
 			)
-			if main_scene != "res://addons/GodotASCIIToolKit/Credits/ascii_credits_screen.tscn":
+			if main_scene != CREDITS_SCENE:
 				main_scene = ""
 			ProjectSettings.set_setting(
 				"application/run/main_scene",
