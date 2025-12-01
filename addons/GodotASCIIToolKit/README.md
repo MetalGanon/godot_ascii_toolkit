@@ -79,4 +79,10 @@ Every custom type is documented using the following the template describe in fil
 ################################################################################
 ```
 
+I will try to document functions more exhaustively.
+
 ## Contributing
+
+As long as they are properly documented and respect [gdscript styling](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html), all contributions are welcome!
+
+# Ask for help or new features in the issues!
