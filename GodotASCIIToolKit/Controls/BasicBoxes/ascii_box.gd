@@ -50,9 +50,14 @@ static var chars: Array[Array] = [
 		property_changed.emit("box_type", value)
 
 
+func _ready():
+	super()
+	box_chars = chars[box_type]
+
+
 func _on_property_changed(prop_name, prop_value):
 	match prop_name:
 		"box_type":
-			box_chars = chars[box_type]
+			box_chars = chars[prop_value]
 		_:
 			super(prop_name, prop_value)

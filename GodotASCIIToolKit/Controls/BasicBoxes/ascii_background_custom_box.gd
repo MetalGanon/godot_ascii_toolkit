@@ -31,10 +31,10 @@ extends ASCIICustomBox
 		property_changed.emit("background_color", value)
 
 
-func _init() -> void:
-	## Setting minimum size in tile
-	minimum_size_tile = Vector2i(2,2)
-
+func _ready():
+	super()
+	$BackgroundRect.visible = background_visible
+	$BackgroundRect.color = background_color
 
 func _add_required_nodes():
 	## Adding box label
@@ -47,12 +47,17 @@ func _add_required_nodes():
 	super()
 
 
+func _remove_required_nodes():
+	_remove_and_free_child("BackgroundRect")
+	super()
+
+
 func _on_property_changed(prop_name, prop_value):
 	match prop_name:
 		"background_visible":
 			$BackgroundRect.visible = prop_value
 		"background_color":
-			$BackgroundRect.color = background_color
+			$BackgroundRect.color = prop_value
 		_:
 			super(prop_name, prop_value)
 

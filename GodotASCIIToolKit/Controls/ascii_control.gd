@@ -20,7 +20,7 @@ extends Control
 ################################################################################
 
 ## Size in tiles (instead of pixels)
-var size_tile: Vector2i = Vector2i(3, 3)
+var size_tile: Vector2i = Vector2i(2, 2)
  ## Position in tiles (instead of pixels)
 var position_tile: Vector2i = Vector2i(0, 0) 
 ## If the size is inferior to minimum size, no update is performed. 
@@ -29,15 +29,18 @@ var minimum_size_tile: Vector2i = Vector2i(2, 2)
 signal property_changed(name, value)
 
 
-func _enter_tree():
-	if Engine.is_editor_hint():
-		size_tile = minimum_size_tile
-		custom_minimum_size = Vector2i(
-			minimum_size_tile.x*ASCIISettings.TILE_SIZE_PX.X,
-			minimum_size_tile.y*ASCIISettings.TILE_SIZE_PX.Y
-		)
-		set_deferred("size", custom_minimum_size)
+func _init():
 	_add_required_nodes()
+	if Engine.is_editor_hint():
+		# Node has never been initialized
+		if size == Vector2(0.0, 0.0):
+			#_default_properties()
+			custom_minimum_size = Vector2i(
+				minimum_size_tile.x*ASCIISettings.TILE_SIZE_PX.X,
+				minimum_size_tile.y*ASCIISettings.TILE_SIZE_PX.Y
+			)
+			size_tile = minimum_size_tile
+			set_deferred("size", custom_minimum_size)
 
 
 func _ready():
@@ -46,13 +49,26 @@ func _ready():
 		"Grid of ASCIIControl named %s is not conforming..." % name
 	)
 	property_changed.connect(_on_property_changed)
-	_update_size_tile()
-	_update()
+	_update_protected()
+
+
+func _default_properties():
+	pass
 
 
 func _add_required_nodes():
 	## To be overriden in child class
 	pass
+
+
+func _remove_required_nodes():
+	## To be overriden in child class
+	pass
+
+
+func _remove_and_free_child(name: String) -> void:
+	var node = get_node(name)
+	remove_child(node)
 
 
 func _on_property_changed(_prop_name, _prop_value):

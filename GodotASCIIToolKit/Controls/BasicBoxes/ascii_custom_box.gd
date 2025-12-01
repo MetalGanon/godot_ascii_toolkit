@@ -42,7 +42,8 @@ enum {
 		property_changed.emit("box_chars", value)
 
 
-func _init() -> void:
+func _default_properties():
+	super()
 	minimum_size_tile = Vector2i(2,2)
 
 
@@ -54,6 +55,11 @@ func _add_required_nodes():
 	box_label.name = "BoxLabel"
 	box_label.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(box_label)
+
+
+func _remove_required_nodes():
+	super()
+	_remove_and_free_child("BoxLabel")
 
 
 func _on_property_changed(prop_name, prop_value):

@@ -1,0 +1,188 @@
+[gd_scene load_steps=10 format=3 uid="uid://c8y01u483tpn7"]
+
+[ext_resource type="Script" uid="uid://cppsjiuyxkmqm" path="res://addons/GodotASCIIToolKit/Controls/ascii_control.gd" id="1_6wsem"]
+[ext_resource type="Script" uid="uid://01w54bkvnjo5" path="res://addons/GodotASCIIToolKit/Splash/ascii_godot_splash_screen.gd" id="2_bbtaf"]
+[ext_resource type="Theme" uid="uid://dismfahxdsqkk" path="res://addons/GodotASCIIToolKit/Resources/Godot/Themes/ascii_label_theme.tres" id="3_pa3ia"]
+[ext_resource type="Script" uid="uid://b0fxeaxf1fetk" path="res://addons/GodotASCIIToolKit/Controls/ascii_label.gd" id="4_qdtf2"]
+
+[sub_resource type="Animation" id="Animation_pa3ia"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qdtf2"]
+resource_name = "fade_in"
+length = 0.16667001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bbtaf"]
+resource_name = "fade_in_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.6666667, 0.8333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ropdf"]
+resource_name = "fade_out"
+length = 0.16667001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qdtf2"]
+_data = {
+&"RESET": SubResource("Animation_pa3ia"),
+&"fade_in": SubResource("Animation_qdtf2"),
+&"fade_in_out": SubResource("Animation_bbtaf"),
+&"fade_out": SubResource("Animation_ropdf")
+}
+
+[node name="ASCIIGodotSplashScreen" type="Control"]
+custom_minimum_size = Vector2(16, 32)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6wsem")
+metadata/_custom_type_script = "uid://cppsjiuyxkmqm"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ASCIIGodot" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(16, 32)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -216.0
+offset_top = -288.0
+offset_right = 216.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_bbtaf")
+metadata/_custom_type_script = "uid://cppsjiuyxkmqm"
+
+[node name="ASCIIGodotLogoLabel" type="Label" parent="ASCIIGodot"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+theme = ExtResource("3_pa3ia")
+theme_override_constants/line_spacing = 0
+text = "                   ...          ...                   
+              ..++++++.        .++++++..              
+              .++++++++.      .++++++++.              
+              .++++++++++++++++++++++++.              
+              .++++++++++++++++++++++++.              
+    ++.    ..++++++++++++++++++++++++++++..    .++    
+  .++++++.++++++++++++++++++++++++++++++++++.++++++.  
+.++++++++++++++++++++++++++++++++++++++++++++++++++++.
+.++++++++++++++++++++++++++++++++++++++++++++++++++++.
+ .++++++++++++++++++++++++++++++++++++++++++++++++++. 
+   +++++++++++##++++++++++++++++++++++##+++++++++++   
+   +++++++#@@@@@@@#++++++++++++++++#@@@@@@@#+++++++   
+   ++++++#@@+....+@#+++++#@@#+++++#@+....+@@#++++++   
+   ++++++@@+ .... #@+++++@@@@+++++@# .... +@@++++++   
+   ++++++#@@+....+@#+++++@@@@+++++#@+....+@@#++++++   
+   +++++++#@@@###@#++++++@@@@++++++#@###@@@#+++++++   
+   +++++++++++##++++++++++##++++++++++##+++++++++++   
+   +#++++++++++++++++++++++++++++++++++++++++++++#+   
+   #@@@@@@@@#+++++++++##########+++++++++#@@@@@@@@#   
+   .+++++++@@++++++++@@@@@@@@@@@@++++++++@@++++++++   
+   .+++++++#@########@@++++++++@@########@#+++++++.   
+    ++++++++##@@@@@@@@#++++++++#@@@@@@@@##++++++++    
+     .++++++++++++++++++++++++++++++++++++++++++.     
+       .++++++++++++++++++++++++++++++++++++++.       
+          ..++++++++++++++++++++++++++++++..          
+                 ......++++++++.......                "
+script = ExtResource("4_qdtf2")
+metadata/_custom_type_script = "uid://b0fxeaxf1fetk"
+metadata/_edit_lock_ = true
+
+[node name="ASCIIGodotTextLabel" type="Label" parent="ASCIIGodot"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 432.0
+offset_right = 392.0
+offset_bottom = 528.0
+theme = ExtResource("3_pa3ia")
+theme_override_constants/line_spacing = 0
+text = " .88888.                 dP            dP  
+d8'   `88                88            88  
+88        .d8888b. .d888b88 .d8888b. d8888P
+88   YP88 88'  `88 88'  `88 88'  `88   88  
+Y8.   .88 88.  .88 88.  .88 88.  .88   88  
+ `88888'  `88888P' `88888P8 `88888P'   dP  "
+script = ExtResource("4_qdtf2")
+metadata/_custom_type_script = "uid://b0fxeaxf1fetk"
+metadata/_edit_lock_ = true
+
+[node name="ASCIIGameEngineLabel" type="Label" parent="ASCIIGodot"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 528.0
+offset_right = 352.0
+offset_bottom = 576.0
+theme = ExtResource("3_pa3ia")
+theme_override_constants/line_spacing = 0
+text = " __ _     __    __    _____    __
+/__|_||V||_    |_ |\\|/__ | |\\||_ 
+\\_|| || ||__   |__| |\\_|_|_| ||__"
+script = ExtResource("4_qdtf2")
+metadata/_custom_type_script = "uid://b0fxeaxf1fetk"
+metadata/_edit_lock_ = true
+
+[node name="FadePlayer" type="AnimationPlayer" parent="ASCIIGodot"]
+libraries = {
+&"": SubResource("AnimationLibrary_qdtf2")
+}

@@ -11,11 +11,9 @@ extends Label
 ################################################################################
 
 
-func _init() -> void:
+func _ready() -> void:
 	const pref = "res://addons/GodotASCIIToolKit/"
 	theme = load(
 		pref+"Resources/Godot/Themes/ascii_label_theme.tres"
 	)
-	label_settings = load(
-		pref+"Resources/Godot/LabelSettings/label_settings.tres"
-	)
+	add_theme_constant_override("line_spacing", 0.0)
