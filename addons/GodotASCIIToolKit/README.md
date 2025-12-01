@@ -33,9 +33,13 @@ I made a Godot ASCII splash screen which replace the original one by default.
 ## ASCIISettings
 
 There is an autoload when the plugin is activated : [`ASCIISettings`](ascii_settings.gd). This is where you can:
-- change the game resolution and grid size (enums `TILE_SIZE_PX` and `VIEWPORT_SIZE_PX`),
-- toggle on or off the Godot ASCII Splash Screen (enum `SPLASH`),
-- The scene after the Godot ASCII Splash Screen (enum `SCENE_AFTER_SPLASH`).
+- change the game resolution and grid size with enums `TILE_SIZE_PX` and `VIEWPORT_SIZE_PX` (`ProjectSettings` are changed accordingly),
+- toggle on or off the Godot ASCII Splash Screen with enum `SPLASH`,
+- The scene after the Godot ASCII Splash Screen with enum `SCENE_AFTER_SPLASH`.
+
+This script also changes some `ProjectSettings`:
+- "application/boot_splash/image" -> `false`: to replace the original splash by the ASCII one.
+- "rendering/textures/canvas_textures/default_texture_filter" −> 0: so that the rendering of pixel font in the editor is set to nearest (default is linear).
 
 Maybe it would be simpler if all those configurations were handled through text files? Please, don't hesitate to give feedbacks. 
 
