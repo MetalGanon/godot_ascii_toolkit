@@ -2,6 +2,12 @@
 
 **An open source ASCII toolkit for the game engine Godot!**
 
+This is the official repository for the GodotASCIIToolKit, a plugin of the game engine [Godot](https://godotengine.org/).
+
+This repository contains:
+- the sources of the plugin in [`addons/GodotASCIIToolKit`](addons/GodotASCIIToolkit);
+- a minimal working Godot project using that plugin (only composed of a main menu). 
+
 ```
                       ...          ...                      
                  ..++++++.        .++++++..                 
@@ -32,8 +38,6 @@
 ```
 
 ## Description
-
-This repository contain a plugin for the game engine [Godot](https://godotengine.org/).
 
 This plugin aims at providing tools to develop ASCII games in Godot while still using all its handy features at maximum. 
 
