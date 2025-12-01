@@ -54,7 +54,7 @@ Maybe it would be simpler if all those configurations were handled through text 
 
 ## Documentation
 
-Every custom type is documented using the following the template given in 
+Every custom type is documented using the following the template describe in file [full_documentation_template.txt](full_documentation_template.txt)
 
 ```
 ## Script type #################################################################
