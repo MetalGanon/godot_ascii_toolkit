@@ -2,35 +2,21 @@
 
 **An open source ASCII toolkit for the game engine Godot!**
 
+<table>
+<tr>
+<td>
+
+## Generalities
+
 This is the official repository for the GodotASCIIToolKit, a plugin of the game engine [Godot](https://godotengine.org/).
 
 This repository contains:
 - the sources of the plugin in [`addons/GodotASCIIToolKit`](./addons/GodotASCIIToolKit);
 - a minimal working [Godot project](project.godot) using that plugin. It involves a ASCII splash screen of Godot, a main menu and a credits scene. 
 
-
-
-While this doesn't work for all dialects of Markdown, I got this to work with GitLab, GitHub, and mdBook.
-
-Basically, you create the table via HTML. Markdown and HTML don't mix well, but if you surround the Markdown with whitespace, sometimes the Markdown can be recognized.
-
 ## Disclaimer
 
-<table>
-<tr>
-<td>
-  
 English is not my native language, so sorry in advance if I am not clear enough when explaining things. 
-
-## Description
-
-This plugin aims at providing tools to develop ASCII games in Godot while still using all its handy features at maximum. 
-
-For now, only some Controls (User Interface) tools are available. 
-
-## Usage
-
-To use it, copy the directory `addons/GodotASCIIToolKit` in your Godot project (`res://addons/GodotASCIIToolKit`) and activate the plugin in the project settings menu.
 
 
 </td>
@@ -69,15 +55,13 @@ To use it, copy the directory `addons/GodotASCIIToolKit` in your Godot project (
 </tr>
 </table>
 
-## Disclaimer
-
-English is not my native language, so sorry in advance if I am not clear enough when explaining things. 
-
 ## Description
 
 This plugin aims at providing tools to develop ASCII games in Godot while still using all its handy features at maximum. 
 
 For now, only some Controls (User Interface) tools are available. 
+
+For documentation and details about the plugin, please refer to [this README](./addons/GodotASCIIToolKit/README.md).
 
 ## Usage
 
@@ -97,10 +81,6 @@ I made a quick review of existing tools and assets:
 
 So you know what they say, when the right tool does not exist, then you have to build it; that's what I do!
 
-## Further information
-
-For documentation and details about the plugin, please refer to [this README](./addons/GodotASCIIToolKit/README.md).
-
 ## Credits
 
 ```
@@ -113,6 +93,13 @@ Y8.   .88  88     88  88        88    .8P 88    88    d8'   .8P
  ```
 
 
+```
+ _  _  _  __ _  _       ___    __
+|_)|_)/ \/__|_)|_||V||V| | |\|/__
+|  | \\_/\_|| \| || || |_|_| |\_|
+```
+
+- [Vost](https://vost.itch.io/)
 
  ```
   _  __ ________    __ _    ___ __
@@ -130,6 +117,5 @@ Y8.   .88  88     88  88        88    .8P 88    88    d8'   .8P
 | |__)\___|__|_    | \_/\_/|____)
 ```
 
-- 
 - [ASCII Art Archive](https://www.asciiart.eu/)
 - [ascii-image-converter](https://github.com/TheZoraiz/ascii-image-converter)
