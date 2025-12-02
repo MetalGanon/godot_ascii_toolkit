@@ -96,7 +96,7 @@ Every custom type is documented using the following the template describe in fil
 
 I will try to document functions more exhaustively.
 
-## Very precise Godot questions
+## Very precise Godot questions: can you help?
 
 - How can I configure grid size and activate grid snap in the 2D editor through gdscript? I know about [EditorSettings](https://docs.godotengine.org/en/stable/classes/class_editorsettings.html), but it does not seem to include it... Other "solutions" I found were more like messy workaround and, when you have to do things like that, it usually means that you've missed something (at least in my own experience).
 - I am really confused about themes. I didn't manage to create it from script, so I have to rely on a ressource created from the editor... If someone knows, please show me in the [`ASCIILabel`](Controls/ascii_label.gd).
