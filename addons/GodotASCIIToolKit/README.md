@@ -52,9 +52,20 @@ Maybe it would be simpler if all those configurations were handled through text 
 - `ASCIICustomBox(ASCIIControl)`: A specialized `ASCIIControl` containing a `ASCIILabel` to draw boxes. Box characters are customizable.
 - `ASCIIBackgroundCustomBox(ASCIICustomBox)`: `ASCIICustomBox` with a solid background.
 - `ASCIIBox(ASCIIBackgroundCustomBox)`: ASCII Box where the box characters are chosen from a list of types.
+
+![ASCIIBox](../../.illustrations/ASCIIbox.gif)
+
 - `ASCIICustomTextBox(ASCIIBox)`: ASCII text box with custom margins
-- `ASCIITitledBox(ASCIIBox)`: A box with a title on the frame. ![ASCIIBox](../../.illustrations/ASCIIbox.gif)
+
+![ASCIIButton](../../.illustrations/ASCIICustomTextBox.gif)
+
+- `ASCIITitledBox(ASCIIBox)`: A box with a title on the frame.
+
+![ASCIIButton](../../.illustrations/ASCIITitleBox.gif)
+
 - `ASCIIBoxedTextButton(ASCIICustomTextBox)`: ASCII looking button with text and framebox.
+
+![ASCIIButton](../../.illustrations/minimal_game_ASCII.gif)
 
 ## Documentation
 
