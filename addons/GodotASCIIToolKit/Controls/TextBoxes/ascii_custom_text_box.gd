@@ -106,7 +106,7 @@ func _remove_required_nodes():
 func _default_properties():
 	super()
 	_update_minimum_size_tile()
-	text = "Worker of the world, unite!"
+	text = "Workers of the world, unite!"
 
 
 func _update_minimum_size_tile():
