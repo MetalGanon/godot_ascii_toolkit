@@ -19,6 +19,13 @@ extends Control
 ##
 ################################################################################
 
+## Size of times
+static var tile_size_x: int = ProjectSettings.get_setting(
+	"GodotASCIIToolKit/tile_size_px_x"
+)
+static var tile_size_y: int = ProjectSettings.get_setting(
+	"GodotASCIIToolKit/tile_size_px_y"
+)
 ## Size in tiles (instead of pixels)
 var size_tile: Vector2i = Vector2i(2, 2)
  ## Position in tiles (instead of pixels)
@@ -34,10 +41,10 @@ func _init():
 	if Engine.is_editor_hint():
 		# Node has never been initialized
 		if size == Vector2(0.0, 0.0):
-			#_default_properties()
+			_default_properties()
 			custom_minimum_size = Vector2i(
-				minimum_size_tile.x*ASCIISettings.TILE_SIZE_PX.X,
-				minimum_size_tile.y*ASCIISettings.TILE_SIZE_PX.Y
+				minimum_size_tile.x*tile_size_x,
+				minimum_size_tile.y*tile_size_y,
 			)
 			size_tile = minimum_size_tile
 			set_deferred("size", custom_minimum_size)
@@ -82,6 +89,7 @@ func _update_protected():
 		_update_size_tile()
 	_update()
 
+
 func _update():
 	## To be overriden in child class
 	pass
@@ -91,8 +99,8 @@ func _size_tile_changed() -> bool:
 	## Checks if the size in tiles has changed.
 	##
 	## Return true if the size in tiles has changed. False else. 
-	if (size_tile.x != int(size.x / ASCIISettings.TILE_SIZE_PX.X) or 
-		size_tile.y != int(size.y / ASCIISettings.TILE_SIZE_PX.Y)
+	if (size_tile.x != int(size.x / tile_size_x) or 
+		size_tile.y != int(size.y / tile_size_y)
 	):
 		return true
 	else:
@@ -103,33 +111,34 @@ func _update_size_tile() -> void:
 	## Compute the size of the current control node in tiles
 	##
 	## from size
-	size_tile.x = int(size.x / ASCIISettings.TILE_SIZE_PX.X)
-	size_tile.y = int(size.y / ASCIISettings.TILE_SIZE_PX.Y)
-	
+	size_tile.x = int(size.x / tile_size_x)
+	size_tile.y = int(size.y / tile_size_y)
+
 
 func _update_size():
 	## Compute the size of the current control node in pixels
 	##
 	## from size_tile
-	size.x = size_tile.x * ASCIISettings.TILE_SIZE_PX.X
-	size.y = size_tile.y * ASCIISettings.TILE_SIZE_PX.Y
+	size.x = size_tile.x * tile_size_x
+	size.y = size_tile.y * tile_size_y 
 
 
 func _position_tile_changed() -> bool:
 	## Checks if the position in tiles has changed.
 	##
 	## Return true if it has. False else. 
-	var new_p_tile_x = int(position_tile.x/ASCIISettings.TILE_SIZE_PX.X) 
-	var new_p_tile_y = int(position_tile.y/ASCIISettings.TILE_SIZE_PX.Y)
+	var new_p_tile_x = int(position_tile.x / tile_size_x) 
+	var new_p_tile_y = int(position_tile.y / tile_size_y)
 	if position_tile.x != new_p_tile_x or position_tile.y != new_p_tile_y:
 		return true
 	else:
 		return false
 
+
 func _update_position_tile() -> void:
 	## Compute the size of the current control node in tiles
-	position_tile.x = int(position.x / ASCIISettings.TILE_SIZE_PX.X)
-	position_tile.y = int(position.y / ASCIISettings.TILE_SIZE_PX.Y)
+	position_tile.x = int(position.x / tile_size_x)
+	position_tile.y = int(position.y / tile_size_y)
 
 
 func check_grid_conforming() -> bool:
@@ -138,10 +147,10 @@ func check_grid_conforming() -> bool:
 	## - The size in pixels is a multiple of the tile size in pixel.
 	## - The position in pixels is a multiple of the tile size in pixel. 
 	## Return true if the nodes is conforming, false else.
-	if (int(size.x) % ASCIISettings.TILE_SIZE_PX.X != 0 or 
-		int(size.y) % ASCIISettings.TILE_SIZE_PX.Y != 0 or
-		int(position.x) % ASCIISettings.TILE_SIZE_PX.X != 0 or
-		int(position.y) % ASCIISettings.TILE_SIZE_PX.X != 0
+	if (int(size.x) % tile_size_x != 0 or 
+		int(size.y) % tile_size_y != 0 or
+		int(position.x) % tile_size_x != 0 or
+		int(position.y) % tile_size_y  != 0
 	):
 		return false
 	return true

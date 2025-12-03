@@ -12,7 +12,7 @@ func _ready():
 func _on_button_play_released():
 	$FadePlayer.play("fade_out")
 	var credits_scene = load(
-		ASCIISettings.CREDITS_SCENE
+		"res://addons/GodotASCIIToolKit/Credits/ascii_credits_screen.tscn"
 	)
 	await $FadePlayer.animation_finished
 	get_tree().change_scene_to_packed(credits_scene)
