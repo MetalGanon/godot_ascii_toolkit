@@ -8,6 +8,12 @@
 
 config_version=5
 
+[GodotASCIIToolKit]
+
+scene_after_ascii_splash_scene="uid://teu5gfeuqjx8"
+tile_size_px_x=8
+tile_size_px_y=16
+
 [application]
 
 config/name="minimal_working_example"
@@ -38,6 +44,7 @@ enabled=PackedStringArray("res://addons/GodotASCIIToolKit/plugin.cfg")
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false
+theme/default_font_antialiasing=0
 
 [rendering]
 

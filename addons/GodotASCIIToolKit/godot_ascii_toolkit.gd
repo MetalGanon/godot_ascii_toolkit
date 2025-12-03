@@ -35,6 +35,9 @@ func _disable_plugin() -> void:
 
 func _enter_tree() -> void:
 	# Initialization of the plugin goes here.
+	## Project settings change
+	_do_project_settings_changes()
+	## Adding custom types
 	add_custom_type(
 		"ASCIILabel",
 		"ASCIILabel",
@@ -87,6 +90,9 @@ func _enter_tree() -> void:
 
 func _exit_tree() -> void:
 	# Clean-up of the plugin goes here.
+	## Undo Project settings
+	_undo_project_settings_changes()
+	## Removing custom types
 	remove_custom_type("ASCIILabel")
 	remove_custom_type("ASCIIControl")
 	remove_custom_type("ASCIICustomBox")
@@ -95,3 +101,67 @@ func _exit_tree() -> void:
 	remove_custom_type("ASCIICustomTextBox")
 	remove_custom_type("ASCIITitledBox")
 	remove_custom_type("ASCIIBoxedTextButton")
+
+
+func _do_project_settings_changes():
+	## Disabling boot_splash, replace by Godot ASCII splash
+	ProjectSettings.set_setting("application/boot_splash/image", false)
+	## Changing texture filter for canvas_textures so that the text render nice
+	## in the editor.
+	ProjectSettings.set_setting(
+		"rendering/textures/canvas_textures/default_texture_filter", 0
+	)
+	## Changing main scene
+	var main_scene = ProjectSettings.get_setting(
+		"application/run/main_scene"
+	)
+	ProjectSettings.set_setting(
+		"application/run/main_scene",
+		"res://addons/GodotASCIIToolKit/Splash/ascii_godot_splash_screen.tscn"
+	)
+	if main_scene.is_empty():
+		ProjectSettings.set_setting(
+			"GodotASCIIToolKit/scene_after_ascii_splash_scene",
+			"res://addons/GodotASCIIToolKit/Credits/ascii_credits_screen.tscn"
+		)
+	else:
+		ProjectSettings.set_setting(
+			"GodotASCIIToolKit/scene_after_ascii_splash_scene",
+			main_scene
+		)
+	## Game resolution
+	ProjectSettings.set_setting(
+		"display/window/size/viewport_width", 1280
+	)
+	ProjectSettings.set_setting(
+		"display/window/size/viewport_height", 720
+	)
+	## Tile Size in pixels
+	ProjectSettings.set_setting(
+		"GodotASCIIToolKit/tile_size_px_x", 8
+	)
+	ProjectSettings.set_setting(
+		"GodotASCIIToolKit/tile_size_px_y", 16
+	)
+
+
+func _undo_project_settings_changes():
+	var main_scene = ProjectSettings.get_setting(
+			"godot_ascii_toolkit/scene_after_splash"
+	)
+	main_scene = ""
+	ProjectSettings.set_setting(
+		"application/run/main_scene",
+		main_scene
+	)
+	## Scene after splash
+	ProjectSettings.set_setting(
+		"GodotASCIIToolKit/scene_after_ascii_splash_scene", null
+	)
+	## Tile Size in pixels
+	ProjectSettings.set_setting(
+		"GodotASCIIToolKit/tile_size_px_x", null
+	)
+	ProjectSettings.set_setting(
+		"GodotASCIIToolKit/tile_size_px_y", null
+	)
