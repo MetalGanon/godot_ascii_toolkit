@@ -33,6 +33,14 @@ func _disable_plugin() -> void:
 
 func _enter_tree() -> void:
 	# Initialization of the plugin goes here.
+	if not FileAccess.file_exists(
+		"res://addons/GodotASCIIToolKit/Resources/ASCIIResources/ascii_themes.tres"
+	):
+		var ascii_themes = ASCIIThemes.new()
+		ResourceSaver.save(
+			ascii_themes, 
+			"res://addons/GodotASCIIToolKit/Resources/ASCIIResources/ascii_themes.tres"
+		)
 	## Project settings change
 	_do_project_settings_changes()
 	## Adding custom types

@@ -65,9 +65,9 @@ func _compute_box_str() -> String:
 		# Loop over the remaining lines except the last one...
 		for j in range(1, size_tile.y-1):
 			box_str += (
-				box_chars[VERTICAL_LINE] +
+				box_chars[ascii_themes.VERTICAL_LINE] +
 				" ".repeat(size_tile.x - 2) +
-				box_chars[VERTICAL_LINE] + "\n"
+				box_chars[ascii_themes.VERTICAL_LINE] + "\n"
 			)
 		# Last line
 		box_str += _compute_last_line()
@@ -79,30 +79,30 @@ func _compute_box_str() -> String:
 func _compute_first_line() -> String:
 	if title_vertical_position == TOP:
 		return _compute_title_line(
-			box_chars[TOP_LEFT_CORNER],
-			box_chars[HORIZONTAL_LINE],
-			box_chars[TOP_RIGHT_CORNER],
+			box_chars[ascii_themes.TOP_LEFT_CORNER],
+			box_chars[ascii_themes.HORIZONTAL_LINE],
+			box_chars[ascii_themes.TOP_RIGHT_CORNER],
 		)
 	else:
 		return (
-			box_chars[TOP_LEFT_CORNER] + 
-			box_chars[HORIZONTAL_LINE].repeat(size_tile.x-2) +
-			box_chars[TOP_RIGHT_CORNER] + "\n"
+			box_chars[ascii_themes.TOP_LEFT_CORNER] + 
+			box_chars[ascii_themes.HORIZONTAL_LINE].repeat(size_tile.x-2) +
+			box_chars[ascii_themes.TOP_RIGHT_CORNER] + "\n"
 		)
 
 
 func _compute_last_line() -> String:
 	if title_vertical_position == BOTTOM:
 		return _compute_title_line(
-			box_chars[BOTTOM_LEFT_CORNER],
-			box_chars[HORIZONTAL_LINE],
-			box_chars[BOTTOM_RIGHT_CORNER],
+			box_chars[ascii_themes.BOTTOM_LEFT_CORNER],
+			box_chars[ascii_themes.HORIZONTAL_LINE],
+			box_chars[ascii_themes.BOTTOM_RIGHT_CORNER],
 		)
 	else:
 		return (
-			box_chars[BOTTOM_LEFT_CORNER] + 
-			box_chars[HORIZONTAL_LINE].repeat(size_tile.x-2) +
-			box_chars[BOTTOM_RIGHT_CORNER] + "\n"
+			box_chars[ascii_themes.BOTTOM_LEFT_CORNER] + 
+			box_chars[ascii_themes.HORIZONTAL_LINE].repeat(size_tile.x-2) +
+			box_chars[ascii_themes.BOTTOM_RIGHT_CORNER] + "\n"
 		)
 
 
