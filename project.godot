@@ -10,7 +10,7 @@ config_version=5
 
 [GodotASCIIToolKit]
 
-scene_after_ascii_splash_scene="res://addons/GodotASCIIToolKit/Splash/ascii_godot_splash_screen.tscn"
+scene_after_ascii_splash_scene="uid://teu5gfeuqjx8"
 tile_size_px_x=8
 tile_size_px_y=16
 

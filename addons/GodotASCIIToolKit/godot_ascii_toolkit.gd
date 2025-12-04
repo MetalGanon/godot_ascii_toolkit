@@ -103,7 +103,7 @@ func _exit_tree() -> void:
 
 func _do_project_settings_changes():
 	## Disabling boot_splash, replace by Godot ASCII splash
-	ProjectSettings.set_setting("application/boot_splash/image", false)
+	ProjectSettings.set_setting("application/boot_splash/image", "")
 	## Changing texture filter for canvas_textures so that the text render nice
 	## in the editor.
 	ProjectSettings.set_setting(
@@ -145,9 +145,12 @@ func _do_project_settings_changes():
 
 func _undo_project_settings_changes():
 	var main_scene = ProjectSettings.get_setting(
-			"godot_ascii_toolkit/scene_after_splash"
+			"GodotASCIIToolKit/scene_after_ascii_splash_scene"
 	)
-	main_scene = ""
+	if (main_scene == 
+		"res://addons/GodotASCIIToolKit/Credits/ascii_credits_screen.tscn"
+	):
+		main_scene = ""
 	ProjectSettings.set_setting(
 		"application/run/main_scene",
 		main_scene
