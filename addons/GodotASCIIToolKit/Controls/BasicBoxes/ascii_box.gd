@@ -1,6 +1,7 @@
 @tool
 class_name ASCIIBox
 extends ASCIIBackgroundCustomBox
+## Doc to be updated
 ## Plugin custom type ##########################################################
 ## Description -----------------------------------------------------------------
 ## ASCII Box where the box characters are chosen from a list of types.
@@ -23,28 +24,10 @@ extends ASCIIBackgroundCustomBox
 ## Vost
 ##
 ################################################################################
-## ASCII Box with list for type of boxes
-##
-## Box types include (shoule be includes in a class later?)
-## - Simple (default)
-## - Double
-## - Thick
-## - Sharp
 
-# I would like it to be static const but hey, var does the trick.
-const chars: Array[Array] = [
-	['│','─','┌','┐','└','┘'],
-	['║','═','╔','╗','╚','╝'],
-	['█','█','█','█','█','█'],
-	['#','#','#','#','#','#'],
-]
+@export_storage var themes_names = ["1", "2"]
 
-@export_enum(
-	"Simple",
-	"Double", 
-	"Thick",
-	"Sharp"
-) var box_type: int:
+var box_type: int:
 	set(value):
 		box_type = value
 		property_changed.emit("box_type", value)
@@ -52,12 +35,32 @@ const chars: Array[Array] = [
 
 func _ready():
 	super()
-	box_chars = chars[box_type]
+	ascii_themes.themes_changed.connect(_update_themes_list)
+	_update_themes_list()
+	box_chars = ascii_themes.get_theme(box_type)
+
+
+func _get_property_list() -> Array:
+	var props = []
+
+	props.append({
+		"name": "box_type",
+		"type": TYPE_INT,
+		"hint": PROPERTY_HINT_ENUM,
+		"hint_string": ",".join(themes_names)
+	})
+	
+	return props
+
+
+func _update_themes_list():
+	themes_names = ascii_themes.get_themes_names()
+	notify_property_list_changed()
 
 
 func _on_property_changed(prop_name, prop_value):
 	match prop_name:
 		"box_type":
-			box_chars = chars[prop_value]
+			box_chars = ascii_themes.get_theme(prop_value)
 		_:
 			super(prop_name, prop_value)
