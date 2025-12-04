@@ -32,7 +32,7 @@ extends ASCIIBackgroundCustomBox
 ## - Sharp
 
 # I would like it to be static const but hey, var does the trick.
-static var chars: Array[Array] = [
+const chars: Array[Array] = [
 	['│','─','┌','┐','└','┘'],
 	['║','═','╔','╗','╚','╝'],
 	['█','█','█','█','█','█'],

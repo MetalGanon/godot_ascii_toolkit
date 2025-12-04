@@ -140,15 +140,16 @@ func _on_property_changed(prop_name, prop_value):
 
 func _update_margins():
 	_update_minimum_size_tile()
+	var tile_size = get_tile_size()
 	$TextLabel.set_deferred("position", Vector2i(
-		(1 + margins[LEFT]) * tile_size_x,
-		(1 + margins[TOP]) * tile_size_y,
+		(1 + margins[LEFT]) * tile_size.x,
+		(1 + margins[TOP]) * tile_size.y,
 	))
 	var new_size_tile = Vector2i(
 		(size_tile.x - margins[LEFT] - margins[RIGHT] - 2),
 		(size_tile.y - margins[TOP] - margins[BOTTOM] - 2),
 	)
 	$TextLabel.set_deferred("size", Vector2i(
-		new_size_tile.x * tile_size_x,
-		new_size_tile.y * tile_size_y,
+		new_size_tile.x * tile_size.x,
+		new_size_tile.y * tile_size.y,
 	))
