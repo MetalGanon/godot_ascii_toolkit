@@ -103,7 +103,10 @@ func _exit_tree() -> void:
 
 func _do_project_settings_changes():
 	## Disabling boot_splash, replace by Godot ASCII splash
-	ProjectSettings.set_setting("application/boot_splash/image", "")
+	ProjectSettings.set_setting("application/boot_splash/show_image", false)
+	ProjectSettings.set_setting(
+		"application/boot_splash/bg_color", Color.BLACK
+	)
 	## Changing texture filter for canvas_textures so that the text render nice
 	## in the editor.
 	ProjectSettings.set_setting(
@@ -154,6 +157,13 @@ func _undo_project_settings_changes():
 	ProjectSettings.set_setting(
 		"application/run/main_scene",
 		main_scene
+	)
+	## Godot original splash
+	ProjectSettings.set_setting(
+		"application/boot_splash/show_image", true
+	)
+	ProjectSettings.set_setting(
+		"application/boot_splash/bg_color", Color8(36,36,36,255)
 	)
 	## Scene after splash
 	ProjectSettings.set_setting(
