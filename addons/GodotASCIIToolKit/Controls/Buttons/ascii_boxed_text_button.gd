@@ -14,9 +14,9 @@ extends ASCIICustomTextBox
 ##
 ## Signals ---------------------------------------------------------------------
 ## - button_down
-##    Aim at mimicking the button_down signal of Button (i.e. left click down)
+##    Mimicks the button_down signal of Button (i.e. left click down)
 ## - button_up
-##    Aim at mimicking the button_up signal of Button (i.e. left click released)
+##    Mimicks the button_up signal of Button (i.e. left click released)
 ##
 ## Author(s) -------------------------------------------------------------------
 ## Vost

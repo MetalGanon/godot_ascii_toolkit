@@ -113,6 +113,9 @@ script = ExtResource("2_3h8tl")
 title_text = " Thanks !"
 title_vertical_position = 1
 title_horizontal_alignment = 1
+themes_names = Array[String](["simple", "double", "thick", "sharp"])
+box_type = 0
+box_chars = "│─┌┐└┘"
 metadata/_custom_type_script = "uid://c2o5wu8t7gpha"
 
 [node name="ASCIICreditsLabel" type="Label" parent="ASCIICredits"]

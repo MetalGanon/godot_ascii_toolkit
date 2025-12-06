@@ -111,6 +111,7 @@ mouse_default_cursor_shape = 2
 script = ExtResource("2_7vrkn")
 text = "PLAY"
 horizontal_alignment = 1
+box_type = 0
 metadata/_custom_type_script = "uid://dob44nskp0ifa"
 
 [node name="ASCIIQuitButton" type="Control" parent="Control"]
@@ -124,6 +125,7 @@ mouse_default_cursor_shape = 2
 script = ExtResource("2_7vrkn")
 text = "QUIT"
 horizontal_alignment = 1
+box_type = 0
 metadata/_custom_type_script = "uid://dob44nskp0ifa"
 
 [node name="FadePlayer" type="AnimationPlayer" parent="Control"]
