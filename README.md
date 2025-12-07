@@ -4,11 +4,11 @@
 <tr>
 <td>
 
-**An open source ASCII toolkit for the Godot!**
+**An open source ASCII toolkit for Godot!**
 
 ## Generalities
 
-This is the official repository for the GodotASCIIToolKit, a plugin of the game engine [Godot](https://godotengine.org/).
+This is the official repository for the GodotASCIIToolKit, a plugin for the game engine [Godot](https://godotengine.org/).
 
 This repository contains:
 - the sources of the plugin in [`addons/GodotASCIIToolKit`](./addons/GodotASCIIToolKit);
@@ -59,13 +59,41 @@ English is not my native language, so sorry in advance if I am not clear enough 
 
 This plugin aims at providing tools to develop ASCII games in Godot while still using all its handy features at maximum. 
 
-For now, only some Controls (User Interface) tools are available. 
+For now, it adds the following custom types:
+- `ASCIILabel(Label)`: Just a label with the good properties for ASCII tools.
+- `ASCIIControl(Control)`: Specialization class of Control for ASCII grids.
+- `ASCIICustomBox(ASCIIControl)`: A specialized `ASCIIControl` containing a `ASCIILabel` to draw boxes. Box characters are customizable.
+- `ASCIIBackgroundCustomBox(ASCIICustomBox)`: `ASCIICustomBox` with a solid background.
+- `ASCIIBox(ASCIIBackgroundCustomBox)`: ASCII Box where the box characters are chosen from a list of types.
+
+![ASCIIBox](.illustrations/ASCIIbox.gif)
+
+- `ASCIICustomTextBox(ASCIIBox)`: ASCII text box with custom margins
+
+![ASCIIButton](.illustrations/ASCIICustomTextBox.gif)
+
+- `ASCIITitledBox(ASCIIBox)`: A box with a title on the frame.
+
+![ASCIIButton](.illustrations/ASCIITitleBox.gif)
+
+- `ASCIIBoxedTextButton(ASCIICustomTextBox)`: ASCII looking button with text and framebox.
+
+![ASCIIButton](.illustrations/minimal_game_ASCII.gif)
+
 
 For documentation and details about the plugin, please refer to [this README](./addons/GodotASCIIToolKit/README.md).
 
+## Installation
+
+To install the plugin you can:
+- (**easiest**) Install it directly from the Asset Lib dock with the Godot editor!
+- (**still very easy**) Download the zip file (from either github, [itch.io](https://vost.itch.io/godotasciitoolkit) or the [Godot Asset Library](https://godotengine.org/asset-library/asset/4531)) and extract it in your Godot project (`res://addons/GodotASCIIToolKit`).
+
+Then, you just have to enable the plugin in the project settings menu and voilà!
+
 ## Usage
 
-To use it, copy the directory `addons/GodotASCIIToolKit` in your Godot project (`res://addons/GodotASCIIToolKit`) and activate the plugin in the project settings menu.
+For usage, please refer to more detailed documentation of the plugin in [this README](./addons/GodotASCIIToolKit/README.md)
 
 ## Motivations
 
@@ -76,7 +104,7 @@ Moreover, I am truly amazed by the quality of certain forms of ASCII art despite
 I have been using Godot to program games for 4 or 5 years, so the question raised naturally: *how can I program a Stone Story RPG-like using godot?*
 
 I made a quick review of existing tools and assets:
-- user nofacer made an [ASCII Screen plugin](https://godotengine.org/asset-library/asset/4336) to put characters on a screen manually in a very [RoguelikeDev](https://www.reddit.com/r/roguelikedev/wiki/) way. While it is awesome for learning how to code, making something as graphically complex as Stone Story RPG with this method would be a real pain. Furthermore, it does not take advantage of Godot and its great features, especially the WYSIWYG editor and animation players. 
+- user nofacer made an [ASCII Screen plugin](https://godotengine.org/asset-library/asset/4336) to put characters on a screen manually in a very [RoguelikeDev](https://www.reddit.com/r/roguelikedev/wiki/) way. While it is awesome for learning how to code, making something as graphically complex as Stone Story RPG with this method would be a real pain. Furthermore, it does not take advantage of Godot and its great features, especially the WYSIWYG editor, tweens and animation players. 
 - People also made ASCII shaders (*e.g.* [Dan's](https://godotshaders.com/shader/ascii-shader/)) which is very cool! However, it seems more suited as a filter for 3D games aiming for a retro vibe. Out of the present scope.
 
 So you know what they say, when the right tool does not exist, then you have to build it; that's what I do!

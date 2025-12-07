@@ -25,7 +25,12 @@ extends EditorPlugin
 ##         containing the credits for the Godot ASCII ToolKit!
 ##     - if a main_scene is defined:
 ##         the scene after splash is set to the main_scene.
-## 
+## - "GodotASCIIToolKit/tile_size_px_x": int = 8
+##     The size of an individual ASCII character along the x axis. By default,
+##     a lot of ASCII monospace font are using a character width of 8 pixels.
+## - "GodotASCIIToolKit/tile_size_px_x": int = 16
+##     The size of an individual ASCII character along the y axis. By default,
+##     a lot of ASCII monospace font are using a character width of 16 pixels.
 ##
 ## Comments --------------------------------------------------------------------
 ## The tools are intended to be used in an editor with specific editor settings. 
