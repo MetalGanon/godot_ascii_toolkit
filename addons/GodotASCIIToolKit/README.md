@@ -71,7 +71,7 @@ Maybe it would be simpler if all those configurations were handled through text 
 
 Every custom type is documented using the following the template describe in file [full_documentation_template.txt](full_documentation_template.txt)
 
-```
+``` gdscript
 ## Script type #################################################################
 ## Description -----------------------------------------------------------------
 ##
