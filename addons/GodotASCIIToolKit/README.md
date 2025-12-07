@@ -115,7 +115,7 @@ Another way, for customizing only one instance for an `ASCII` tool that derives 
 
 Every custom type is documented using the following the template describe in file [full_documentation_template.txt](full_documentation_template.txt)
 
-```
+``` gdscript
 ## Script type #################################################################
 ## Description -----------------------------------------------------------------
 ##
