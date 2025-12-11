@@ -117,6 +117,12 @@ func _enter_tree() -> void:
 		preload("Controls/Buttons/ascii_boxed_text_button.gd"),
 		preload("godot_ascii_toolkit_icon.png"),
 	)
+	add_custom_type(
+		"ASCIICustomProgressBar",
+		"ASCIICustomProgressBar",
+		preload("Controls/ProgressBar/ascii_custom_progress_bar.gd"),
+		preload("godot_ascii_toolkit_icon.png"),
+	)
 
 
 func _exit_tree() -> void:
@@ -132,6 +138,7 @@ func _exit_tree() -> void:
 	remove_custom_type("ASCIICustomTextBox")
 	remove_custom_type("ASCIITitledBox")
 	remove_custom_type("ASCIIBoxedTextButton")
+	remove_custom_type("ASCIICustomProgressBar")
 
 
 func _do_project_settings_changes():
