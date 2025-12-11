@@ -3,17 +3,21 @@ class_name ASCIICustomBox
 extends ASCIIControl
 ## Plugin custom type ##########################################################
 ## Description -----------------------------------------------------------------
-## A specialized ASCIILabel to draw boxes
-## Defines the characters you want to surround your box
+## A specialized ASCIIControl to draw ASCII boxes.
+## Define the characters you want to surround your box!
 ##
-## Enums -----------------------------------------------------------------------
-## - unamed: {VERTICAL_LINE,...}
-##     Correspondance between box_chars index and line of the box.
-##     e.g. index 0 of array box_chars is the character corresponding to the 
-##     vertical lines of the box.
 ## Exported properties ---------------------------------------------------------
-## - box_chars: Array[char] (I know char do not exist in Godot)
-##     Is the background visible or not.
+## - ascii_themes: Resource
+##     ASCII themes are a custom resource that defines the ASCII characters used
+##     to build UI graphical elements (i.e. not text) like boxes, buttons, etc. 
+##     For further details, please refer to ascii_themes.gd.
+## - box_chars: String
+##     The string containing the characters used to draw the box. At init, the
+##     default theme (cf. ascii_themes.gd) is used.
+##     The user can change the string to change the box appearance (that is why
+##     this class is said "custom"). The correspondance between the character
+##     function (vertical line, top left corner, etc.) and the index of the 
+##     character in the box_chars string is given by the enum of ascii_themes.gd 
 ##
 ## Nodes created ---------------------------------------------------------------
 ## - Nodes of all super class
@@ -30,7 +34,7 @@ static var ascii_themes = load(
 )
 
 ## Drawing attributes
-@export var box_chars = ascii_themes.get_default_theme():
+@export var box_chars: String = ascii_themes.get_default_theme():
 	set(value):
 		box_chars = value
 		property_changed.emit("box_chars", value)

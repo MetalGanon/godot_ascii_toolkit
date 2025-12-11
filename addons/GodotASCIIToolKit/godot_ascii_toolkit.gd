@@ -4,16 +4,41 @@ extends EditorPlugin
 ## Description -----------------------------------------------------------------
 ## This is the activation and deactivation script of the Godot ASCII ToolKit.
 ##
+## When it is enabled, it modifies the following ProjectSettings:
+## - "application/boot_splash/show_image" set to false
+##     In order to replace the original Godot Splash screen by the ASCII Godot
+##     splash screen.
+## - "application/boot_splash/bg_color" set to Color.BLACK
+##     Because the ASCII Godot splash background is black.
+## - "rendering/textures/canvas_textures/default_texture_filter" set to nearest
+##     So that the ASCII font looks nice and sharp even when zooming in. 
+## - "application/run/main_scene" to ascii_godot_splash_screen.tscn
+##     To replace the original godot splash screen with the ASCII one.
+## - "display/window/size/viewport_width" to 1280 (Godot ASCII ToolKit default)
+## - "display/window/size/viewport_height" to 720 (Godot ASCII ToolKit default)
+## and creates news ones:
+## - "GodotASCIIToolKit/scene_after_ascii_splash_scene": String
+##     Path of the scene that goes after the ASCII Godot splash screen.
+##     When enabling the plugin:
+##     - if no main_scene is defined:
+##         the scene after splash is set to ascii_credits_screen.tscn, 
+##         containing the credits for the Godot ASCII ToolKit!
+##     - if a main_scene is defined:
+##         the scene after splash is set to the main_scene.
+## - "GodotASCIIToolKit/tile_size_px_x": int = 8
+##     The size of an individual ASCII character along the x axis. By default,
+##     a lot of ASCII monospace font are using a character width of 8 pixels.
+## - "GodotASCIIToolKit/tile_size_px_x": int = 16
+##     The size of an individual ASCII character along the y axis. By default,
+##     a lot of ASCII monospace font are using a character width of 16 pixels.
+##
 ## Comments --------------------------------------------------------------------
-## The tools are intended to be used in a Godot project and editor with specific
-## settings. 
+## The tools are intended to be used in an editor with specific editor settings. 
 ##
 ## Notably:
-## - Editor settings (I don't know how to perform this with scripts)
-## -- Grid size for 2D editor must be TILE_SIZE_PX
-## -- Grid snap activated
-## - ProjectSettings
-## -- Viewport size must be VIEWPORT_SIZE_PX (cf. ascii_settings.gd).
+## - Grid size for 2D editor must be equal to the size of a tile in pixel (i.e.
+##   GodotASCIIToolKit/tile_size_px_x x GodotASCIIToolKit/tile_size_px_y)
+## - Grid snap activated
 ##
 ## Author(s) -------------------------------------------------------------------
 ## Vost

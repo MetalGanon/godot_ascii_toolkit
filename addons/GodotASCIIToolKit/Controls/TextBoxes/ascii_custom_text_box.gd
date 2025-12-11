@@ -3,7 +3,8 @@ class_name ASCIICustomTextBox
 extends ASCIIBox
 ## Plugin custom type ##########################################################
 ## Description -----------------------------------------------------------------
-## Text box with custom margins
+## ASCII box containing text.
+## The margins are customizable, that is why is class is refered as "custom".
 ##
 ## Enums -----------------------------------------------------------------------
 ## - unamed: {LEFT, RIGHT, TOP, BOTTOM}
@@ -32,9 +33,6 @@ extends ASCIIBox
 ##
 ################################################################################
 
-## Text box with custom margins
-##
-## Some more description
 enum {
 	LEFT,
 	RIGHT,

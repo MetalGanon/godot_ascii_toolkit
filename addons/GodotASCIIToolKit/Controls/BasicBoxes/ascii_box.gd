@@ -1,31 +1,28 @@
 @tool
 class_name ASCIIBox
 extends ASCIIBackgroundCustomBox
-## Doc to be updated
 ## Plugin custom type ##########################################################
 ## Description -----------------------------------------------------------------
-## ASCII Box where the box characters are chosen from a list of types.
-##
-## Statics ---------------------------------------------------------------------
-## - chars: Array[Array[char]]
-##     Array of Array of characters corresponding to box types, i.e. characters 
-##     constitutives of the box. Each element coressponds to a box_chars in the  
-##     sense of ASCIICustomBox (cf. ascii_custom_box.gd).
-##     Index correspond to enum box_type. 
-##     I think it should be a ressource loaded externally at terms, in order to
-##     box types more easily. 
-## Enums -----------------------------------------------------------------------
+## ASCII Box where the box characters are chosen from the list of ASCII themes.
 ##
 ## Exported properties ---------------------------------------------------------
-## - box_types: int [ENUM: Simple, "Double", "Thick", "Sharp"]
-##     The integer corresponding to the index of the type of box in static chars
+## - themes_names: Array[String]
+##     Empty at init, it then (when _update_themes_list is called) holds the 
+##     names of the themes defines in ascii_themes.tres. themes_names is also
+##     updated each time ascii_themes.tres changes so that it accounts for user
+##     added themes.
+##     This variable is used to build the "hint_string" of box_type variable.
+##
+## - box_types: int
+##     The integer corresponding to the index of the ASCII theme used to draw
+##     the box. It is selected using the list of themes_names.
 ##
 ## Author(s) -------------------------------------------------------------------
 ## Vost
 ##
 ################################################################################
 
-@export_storage var themes_names = ["1", "2"]
+@export_storage var themes_names: Array[String] = []
 
 var box_type: int:
 	set(value):
@@ -41,6 +38,7 @@ func _ready():
 
 
 func _get_property_list() -> Array:
+	## I am not sure how it works really but this piece of code if from the goat
 	var props = []
 
 	props.append({
@@ -55,6 +53,7 @@ func _get_property_list() -> Array:
 
 func _update_themes_list():
 	themes_names = ascii_themes.get_themes_names()
+	# Apparently this calls the above method
 	notify_property_list_changed()
 
 

@@ -5,6 +5,10 @@ extends Label
 ## Description -----------------------------------------------------------------
 ## Just a label with the good properties for ASCII tools.
 ##
+## Comments --------------------------------------------------------------------
+## I don't know how to change the font characteristics without relying on a 
+## theme file built with the editor... If someone knows, please contact me.
+## 
 ## Author(s) -------------------------------------------------------------------
 ## Vost
 ##

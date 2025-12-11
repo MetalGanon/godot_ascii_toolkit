@@ -4,7 +4,10 @@ extends Control
 ## Plugin custom type ##########################################################
 ## Description -----------------------------------------------------------------
 ## Specialization class of Control for ASCII grids.
-## Provides methods to check placement of current node within the ASCII Grid.
+## - Provides methods to check placement of current node within the ASCII Grid.
+## - Handles size and position
+## - Handles init of the ASCIIControl nodes (adding required nodes and setting 
+##   default values for exported properties if needed).
 ##
 ## Internal properties ---------------------------------------------------------
 ## - size_tile: Vector2i
@@ -12,7 +15,8 @@ extends Control
 ## - position_tile: Vector2i
 ##     Position in tiles (instead of pixels)
 ## - minimum_size_tile: Vector2i
-##     If the size is inferior to minimum size, no update is performed.
+##     Used to set the custom_minimum_size property which does not allow to
+##     resize below that value in the editor.
 ##
 ## Author(s) -------------------------------------------------------------------
 ## Vost

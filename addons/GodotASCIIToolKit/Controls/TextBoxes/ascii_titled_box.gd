@@ -3,7 +3,7 @@ extends ASCIIBox
 class_name ASCIITitledBox
 ## Plugin custom type ##########################################################
 ## Description -----------------------------------------------------------------
-## A box with a title on the frame
+## An ASCII box with a title on the frame
 ##
 ## Enums -----------------------------------------------------------------------
 ## - unamed: {TOP, BOTTOM}
@@ -25,7 +25,7 @@ class_name ASCIITitledBox
 ## Vost
 ##
 ################################################################################
-## A box with a title on the frame
+
 enum {TOP, BOTTOM}
 enum {LEFT, CENTER, RIGHT}
 
