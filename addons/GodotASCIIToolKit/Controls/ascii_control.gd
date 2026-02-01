@@ -49,10 +49,7 @@ func _init():
 
 
 func _ready():
-	assert(
-		check_grid_conforming(), 
-		"Grid of ASCIIControl named %s is not conforming..." % name
-	)
+	check_grid_conforming()
 	property_changed.connect(_on_property_changed)
 	_update_protected()
 
@@ -154,7 +151,7 @@ func _update_position_tile() -> void:
 	position_tile.y = int(position.y / tile_size.y)
 
 
-func check_grid_conforming() -> bool:
+func check_grid_conforming():
 	## Check if position and size is grid conforming.
 	##
 	## - The size in pixels is a multiple of the tile size in pixel.
@@ -166,8 +163,9 @@ func check_grid_conforming() -> bool:
 		int(position.x) % tile_size.x != 0 or
 		int(position.y) % tile_size.y  != 0
 	):
-		return false
-	return true
+		push_warning(
+			"Grid of ASCIIControl named %s is not conforming..." % name
+			)
 
 
 func _notification(what):

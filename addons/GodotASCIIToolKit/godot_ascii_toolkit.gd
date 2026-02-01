@@ -40,35 +40,109 @@ extends EditorPlugin
 ##   GodotASCIIToolKit/tile_size_px_x x GodotASCIIToolKit/tile_size_px_y)
 ## - Grid snap activated
 ##
+## Bonus: list of convenient resolutions with tiles of 8 x 16
+## First X x Y, J x I with I the number of line and J of columns
+## Be carefully I correspond to Y and J correspond to X
+## In 4:3 # there are many more but I got tired
+## 320 x 240	40 x 15
+## 640 x 480	80 x 30
+## 1024 x 768	128 x 48 
+## 1280 x 960	160 x 60 
+## 1408 x 1056	176 x 66
+## In 16:9
+## 512 x 288	64 x 18
+## 768 x 432	96 x 27
+## 1280 x 720	160 x 45
+## 1536 x 864	192 x 54
+## 1792 x 1008	224 x 63
+## In 16:10 # there are many more but I got tired
+## 512 x 320	64 x 20
+## 768 x 480	96 x 30
+## 1024 x 160	128 x 40
+## 1280 x 800	160 x 50
+## 1664 x 1040	208 x 65
+##
 ## Author(s) -------------------------------------------------------------------
 ## Vost
 ##
 ################################################################################
 
 
-func _enable_plugin() -> void:
-	# Add autoloads here.
-	pass
-
-
-func _disable_plugin() -> void:
-	# Remove autoloads here.
-	pass
-
-
 func _enter_tree() -> void:
 	# Initialization of the plugin goes here.
-	if not FileAccess.file_exists(
-		"res://addons/GodotASCIIToolKit/Resources/ASCIIResources/ascii_themes.tres"
-	):
-		var ascii_themes = ASCIIThemes.new()
-		ResourceSaver.save(
-			ascii_themes, 
-			"res://addons/GodotASCIIToolKit/Resources/ASCIIResources/ascii_themes.tres"
-		)
+	if not FileAccess.file_exists("res://godot_ascii_toolkit.cfg"):
+		## The plugin is enabled for the first time
+		_first_time_enabling_plugin()
+	ProjectSettings.settings_changed.connect(_on_project_settings_changed)
+	if not FileAccess.file_exists("res://godot_ascii_toolkit.cfg"):
+		## The plugin is enabled for the first time
+		_first_time_enabling_plugin()
 	## Project settings change
 	_do_project_settings_changes()
 	## Adding custom types
+	_add_custom_nodes()
+
+
+func _on_project_settings_changed():
+	var change_needed = false
+	for setting in ProjectSettings.get_changed_settings():
+		if "display/window/size" in setting or "GodotASCIIToolKit" in setting:
+			change_needed = true
+			break
+	if change_needed:
+		var config = ConfigFile.new()
+		var err = config.load("res://godot_ascii_toolkit.cfg")
+		if err != OK:
+			push_error("Configuration file not read.")
+		var screen_px = ProjectSettings.get_setting(
+			"display/window/size/viewport_width"
+		)
+		var tile_px = ProjectSettings.get_setting(
+			"GodotASCIIToolKit/tile_size_px_x"
+		)
+		var screen_tile = int(screen_px/tile_px)
+		if screen_px % tile_px != 0:
+			push_warning("The window width is not a multiple of tile width.")
+		config.set_value("screen", "width_px", screen_px)
+		config.set_value("screen", "width_tile", screen_tile)
+		config.set_value("tile", "width_px", tile_px)
+		screen_px = ProjectSettings.get_setting(
+			"display/window/size/viewport_height"
+		)
+		tile_px = ProjectSettings.get_setting(
+			"GodotASCIIToolKit/tile_size_px_y"
+		)
+		screen_tile = int(screen_px/tile_px)
+		if screen_px % tile_px != 0:
+			push_warning("The window height is not a multiple of tile width.")
+		config.set_value("screen", "height_px", screen_px) 
+		config.set_value("screen", "height_tile", screen_tile)
+		config.set_value("tile", "height_px", tile_px)
+		config.save("res://godot_ascii_toolkit.cfg")
+
+
+func _first_time_enabling_plugin():
+	## The first time the plugin is enabled:
+	## 1) Config file is created
+	var godot_ascii_toolkit_config = ConfigFile.new()
+	# Setting default values
+	godot_ascii_toolkit_config.set_value("screen", "width_px", 1280) 
+	godot_ascii_toolkit_config.set_value("screen", "height_px", 720) 
+	godot_ascii_toolkit_config.set_value("screen", "width_tile", 160) 
+	godot_ascii_toolkit_config.set_value("screen", "height_tile", 45)
+	godot_ascii_toolkit_config.set_value("tile", "width_px", 8)
+	godot_ascii_toolkit_config.set_value("tile", "height_px", 16)
+	godot_ascii_toolkit_config.save("res://godot_ascii_toolkit.cfg")
+	## 2) the custom ascii theme is created
+	var ascii_themes = ASCIIThemes.new()
+	ResourceSaver.save(
+		ascii_themes, 
+		"res://addons/GodotASCIIToolKit/Resources/ASCIIResources/ascii_themes.tres"
+	)
+	
+
+
+func _add_custom_nodes() -> void:
 	add_custom_type(
 		"ASCIILabel",
 		"ASCIILabel",
@@ -121,9 +195,15 @@ func _enter_tree() -> void:
 
 func _exit_tree() -> void:
 	# Clean-up of the plugin goes here.
+	##
+	ProjectSettings.settings_changed.disconnect(_on_project_settings_changed)
 	## Undo Project settings
 	_undo_project_settings_changes()
 	## Removing custom types
+	_remove_custom_nodes()
+
+
+func _remove_custom_nodes():
 	remove_custom_type("ASCIILabel")
 	remove_custom_type("ASCIIControl")
 	remove_custom_type("ASCIICustomBox")
@@ -164,18 +244,42 @@ func _do_project_settings_changes():
 			main_scene
 		)
 	## Game resolution
+	_update_ascii_screen()
+
+
+func _update_ascii_screen():
+	## Reading config file
+	var config = ConfigFile.new()
+	var err = config.load("res://godot_ascii_toolkit.cfg")
+	if err != OK:
+		push_error("Configuration file not read.")
+	var screen_width_px = config.get_value("screen", "width_px")
+	var screen_height_px = config.get_value("screen", "height_px")
+	var screen_width_tile = config.get_value("screen", "width_tile")
+	var screen_height_tile = config.get_value("screen", "height_tile")
+	var tile_width_px = config.get_value("tile", "width_px")
+	var tile_height_px = config.get_value("tile", "height_px")
+	# Fetch the data for each section.
+	## Game resolution
 	ProjectSettings.set_setting(
-		"display/window/size/viewport_width", 1280
+		"display/window/size/viewport_width", screen_width_px
 	)
 	ProjectSettings.set_setting(
-		"display/window/size/viewport_height", 720
+		"display/window/size/viewport_height", screen_height_px
+	)
+	## Screen size in tiles
+	ProjectSettings.set_setting(
+		"GodotASCIIToolKit/screen_width_tile", screen_width_tile
+	)
+	ProjectSettings.set_setting(
+		"GodotASCIIToolKit/screen_height_tile", screen_height_tile
 	)
 	## Tile Size in pixels
 	ProjectSettings.set_setting(
-		"GodotASCIIToolKit/tile_size_px_x", 8
+		"GodotASCIIToolKit/tile_size_px_x", tile_width_px
 	)
 	ProjectSettings.set_setting(
-		"GodotASCIIToolKit/tile_size_px_y", 16
+		"GodotASCIIToolKit/tile_size_px_y", tile_height_px
 	)
 
 
