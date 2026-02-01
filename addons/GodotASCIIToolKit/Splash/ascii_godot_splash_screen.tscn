@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8y01u483tpn7"]
+[gd_scene format=3 uid="uid://c8y01u483tpn7"]
 
 [ext_resource type="Script" uid="uid://cppsjiuyxkmqm" path="res://addons/GodotASCIIToolKit/Controls/ascii_control.gd" id="1_6wsem"]
 [ext_resource type="Script" uid="uid://01w54bkvnjo5" path="res://addons/GodotASCIIToolKit/Splash/ascii_godot_splash_screen.gd" id="2_bbtaf"]
@@ -75,7 +75,7 @@ _data = {
 &"fade_out": SubResource("Animation_ropdf")
 }
 
-[node name="ASCIIGodotSplashScreen" type="Control"]
+[node name="ASCIIGodotSplashScreen" type="Control" unique_id=417321531]
 custom_minimum_size = Vector2(16, 32)
 layout_mode = 3
 anchors_preset = 15
@@ -86,7 +86,7 @@ grow_vertical = 2
 script = ExtResource("1_6wsem")
 metadata/_custom_type_script = "uid://cppsjiuyxkmqm"
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1865074536]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,7 +95,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="ASCIIGodot" type="Control" parent="."]
+[node name="ASCIIGodot" type="Control" parent="." unique_id=354563652]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(16, 32)
 layout_mode = 1
@@ -113,7 +113,7 @@ grow_vertical = 2
 script = ExtResource("2_bbtaf")
 metadata/_custom_type_script = "uid://cppsjiuyxkmqm"
 
-[node name="ASCIIGodotLogoLabel" type="Label" parent="ASCIIGodot"]
+[node name="ASCIIGodotLogoLabel" type="Label" parent="ASCIIGodot" unique_id=135808146]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 16.0
@@ -149,7 +149,7 @@ script = ExtResource("4_qdtf2")
 metadata/_custom_type_script = "uid://b0fxeaxf1fetk"
 metadata/_edit_lock_ = true
 
-[node name="ASCIIGodotTextLabel" type="Label" parent="ASCIIGodot"]
+[node name="ASCIIGodotTextLabel" type="Label" parent="ASCIIGodot" unique_id=1012957278]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 432.0
@@ -167,7 +167,7 @@ script = ExtResource("4_qdtf2")
 metadata/_custom_type_script = "uid://b0fxeaxf1fetk"
 metadata/_edit_lock_ = true
 
-[node name="ASCIIGameEngineLabel" type="Label" parent="ASCIIGodot"]
+[node name="ASCIIGameEngineLabel" type="Label" parent="ASCIIGodot" unique_id=1394302262]
 layout_mode = 0
 offset_left = 88.0
 offset_top = 528.0
@@ -182,7 +182,5 @@ script = ExtResource("4_qdtf2")
 metadata/_custom_type_script = "uid://b0fxeaxf1fetk"
 metadata/_edit_lock_ = true
 
-[node name="FadePlayer" type="AnimationPlayer" parent="ASCIIGodot"]
-libraries = {
-&"": SubResource("AnimationLibrary_qdtf2")
-}
+[node name="FadePlayer" type="AnimationPlayer" parent="ASCIIGodot" unique_id=1466418129]
+libraries/ = SubResource("AnimationLibrary_qdtf2")

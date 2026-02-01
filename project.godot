@@ -10,22 +10,25 @@ config_version=5
 
 [GodotASCIIToolKit]
 
-scene_after_ascii_splash_scene="uid://teu5gfeuqjx8"
+scene_after_ascii_splash_scene="uid://bg70md18pmw3l"
 tile_size_px_x=8
 tile_size_px_y=16
+
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
 config/name="minimal_working_example"
 config/description="Minimal working example for the plugin GodotACIIToolkit."
-run/main_scene="res://addons/GodotASCIIToolKit/Splash/ascii_godot_splash_screen.tscn"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
-boot_splash/fullsize=false
+boot_splash/stretch_mode=0
 boot_splash/use_filter=false
-boot_splash/image=false
 config/icon="uid://mv2rgwgi1lle"
+run/main_scene="res://addons/GodotASCIIToolKit/Splash/ascii_godot_splash_screen.tscn"
 
 [display]
 
