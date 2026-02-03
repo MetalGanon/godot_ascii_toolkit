@@ -68,6 +68,9 @@ extends EditorPlugin
 ################################################################################
 
 
+func _enable_plugin() -> void:
+	pass
+
 func _enter_tree() -> void:
 	# Initialization of the plugin goes here.
 	if not FileAccess.file_exists("res://godot_ascii_toolkit.cfg"):
@@ -78,9 +81,10 @@ func _enter_tree() -> void:
 		## The plugin is enabled for the first time
 		_first_time_enabling_plugin()
 	## Project settings change
-	_do_project_settings_changes()
+	_update_project_settings()
 	## Adding custom types
 	_add_custom_nodes()
+	
 
 
 func _on_project_settings_changed():
@@ -90,35 +94,43 @@ func _on_project_settings_changed():
 			change_needed = true
 			break
 	if change_needed:
-		var config = ConfigFile.new()
-		var err = config.load("res://godot_ascii_toolkit.cfg")
-		if err != OK:
-			push_error("Configuration file not read.")
-		var screen_px = ProjectSettings.get_setting(
-			"display/window/size/viewport_width"
-		)
-		var tile_px = ProjectSettings.get_setting(
-			"GodotASCIIToolKit/tile_size_px_x"
-		)
-		var screen_tile = int(screen_px/tile_px)
-		if screen_px % tile_px != 0:
-			push_warning("The window width is not a multiple of tile width.")
-		config.set_value("screen", "width_px", screen_px)
-		config.set_value("screen", "width_tile", screen_tile)
-		config.set_value("tile", "width_px", tile_px)
-		screen_px = ProjectSettings.get_setting(
-			"display/window/size/viewport_height"
-		)
-		tile_px = ProjectSettings.get_setting(
-			"GodotASCIIToolKit/tile_size_px_y"
-		)
-		screen_tile = int(screen_px/tile_px)
-		if screen_px % tile_px != 0:
-			push_warning("The window height is not a multiple of tile width.")
-		config.set_value("screen", "height_px", screen_px) 
-		config.set_value("screen", "height_tile", screen_tile)
-		config.set_value("tile", "height_px", tile_px)
-		config.save("res://godot_ascii_toolkit.cfg")
+		_update_config_file()
+
+
+func _update_config_file():
+	var config = ConfigFile.new()
+	var err = config.load("res://godot_ascii_toolkit.cfg")
+	if err != OK:
+		push_error("Configuration file not read.")
+	var screen_px = ProjectSettings.get_setting(
+		"display/window/size/viewport_width"
+	)
+	var tile_px = ProjectSettings.get_setting(
+		"GodotASCIIToolKit/tile_size_px_x"
+	)
+	var screen_tile = int(screen_px/tile_px)
+	if screen_px % tile_px != 0:
+		push_warning("The window width is not a multiple of tile width.")
+	config.set_value("screen", "width_px", screen_px)
+	config.set_value("screen", "width_tile", screen_tile)
+	config.set_value("tile", "width_px", tile_px)
+	screen_px = ProjectSettings.get_setting(
+		"display/window/size/viewport_height"
+	)
+	tile_px = ProjectSettings.get_setting(
+		"GodotASCIIToolKit/tile_size_px_y"
+	)
+	screen_tile = int(screen_px/tile_px)
+	if screen_px % tile_px != 0:
+		push_warning("The window height is not a multiple of tile width.")
+	config.set_value("screen", "height_px", screen_px) 
+	config.set_value("screen", "height_tile", screen_tile)
+	config.set_value("tile", "height_px", tile_px)
+	var scene_after_splash = ProjectSettings.get_setting(
+		"GodotASCIIToolKit/scene_after_ascii_splash_scene"
+	)
+	config.set_value("splash", "scene_after_splash", scene_after_splash)
+	config.save("res://godot_ascii_toolkit.cfg")
 
 
 func _first_time_enabling_plugin():
@@ -132,6 +144,22 @@ func _first_time_enabling_plugin():
 	godot_ascii_toolkit_config.set_value("screen", "height_tile", 45)
 	godot_ascii_toolkit_config.set_value("tile", "width_px", 8)
 	godot_ascii_toolkit_config.set_value("tile", "height_px", 16)
+	## Changing main scene
+	var scene_after_splash = ""
+	var main_scene = ProjectSettings.get_setting(
+		"application/run/main_scene"
+	)
+	if main_scene.is_empty():
+		scene_after_splash = (
+			"res://addons/GodotASCIIToolKit/Credits/ascii_credits_screen.tscn"
+		)
+	else:
+		scene_after_splash = (
+			main_scene
+		)
+	godot_ascii_toolkit_config.set_value(
+		"splash", "scene_after_splash", scene_after_splash
+	)
 	godot_ascii_toolkit_config.save("res://godot_ascii_toolkit.cfg")
 	## 2) the custom ascii theme is created
 	var ascii_themes = ASCIIThemes.new()
@@ -214,7 +242,7 @@ func _remove_custom_nodes():
 	remove_custom_type("ASCIIBoxedTextButton")
 
 
-func _do_project_settings_changes():
+func _update_project_settings():
 	## Disabling boot_splash, replace by Godot ASCII splash
 	ProjectSettings.set_setting("application/boot_splash/show_image", false)
 	ProjectSettings.set_setting(
@@ -226,14 +254,24 @@ func _do_project_settings_changes():
 		"rendering/textures/canvas_textures/default_texture_filter", 0
 	)
 	## Changing main scene
-	var main_scene = ProjectSettings.get_setting(
-		"application/run/main_scene"
-	)
+	_update_main_scene()
+	## Game resolution
+	_update_ascii_screen()
+
+
+func _update_main_scene():
+	## Reading config file
+	var config = ConfigFile.new()
+	var err = config.load("res://godot_ascii_toolkit.cfg")
+	if err != OK:
+		push_error("Configuration file not read.")
+	var scene_after_plash = config.get_value(
+		"splash", "scene_after_splash")
 	ProjectSettings.set_setting(
 		"application/run/main_scene",
 		"res://addons/GodotASCIIToolKit/Splash/ascii_godot_splash_screen.tscn"
 	)
-	if main_scene.is_empty():
+	if scene_after_plash.is_empty():
 		ProjectSettings.set_setting(
 			"GodotASCIIToolKit/scene_after_ascii_splash_scene",
 			"res://addons/GodotASCIIToolKit/Credits/ascii_credits_screen.tscn"
@@ -241,10 +279,8 @@ func _do_project_settings_changes():
 	else:
 		ProjectSettings.set_setting(
 			"GodotASCIIToolKit/scene_after_ascii_splash_scene",
-			main_scene
+			scene_after_plash
 		)
-	## Game resolution
-	_update_ascii_screen()
 
 
 func _update_ascii_screen():
@@ -305,6 +341,13 @@ func _undo_project_settings_changes():
 	## Scene after splash
 	ProjectSettings.set_setting(
 		"GodotASCIIToolKit/scene_after_ascii_splash_scene", null
+	)
+	## Screen size tiles
+	ProjectSettings.set_setting(
+		"GodotASCIIToolKit/screen_width_tile", null
+	)
+	ProjectSettings.set_setting(
+		"GodotASCIIToolKit/screen_height_tile", null
 	)
 	## Tile Size in pixels
 	ProjectSettings.set_setting(
